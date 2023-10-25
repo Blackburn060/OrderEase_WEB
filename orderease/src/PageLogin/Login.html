@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #10279c; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            width: 80%; 
+        }
+
+        .left-side {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .left-side img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .right-side {
+            flex: 1;
+            background-color: transparent; 
+            padding: 20px;
+            border: 2px solid #fff; 
+            border-radius: 10px;
+        }
+
+        .right-side h1 {
+            text-transform: uppercase;
+            color: #fff; 
+            text-align: center;
+        }
+
+        .form-group {
+            margin-top: 20px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-bottom: 1px solid #fff;
+            background: transparent;
+            color: #fff; 
+            margin-bottom: 20px;
+        }
+
+        .form-group input::placeholder {
+            color: #fff; 
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: transparent; 
+            color: #fff; 
+            border: 2px solid #fff; 
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-side">
+            <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.hoteis.com%2Fgo%2Fbrasil%2Fbr-melhores-restaurantes-belo-horizonte&psig=AOvVaw3k4JSlk6asaOCIhmdwdfpu&ust=1698355821214000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCJCf_72SkoIDFQAAAAAdAAAAABAI" alt="Imagem de fundo" width="60" height="40">
+
+        </div>
+        <div class="right-side">
+            <h1>LOGIN</h1>
+            <div class="form-group">
+                <input type="text" placeholder="Usuário">
+            </div>
+            <div class="form-group">
+                <input type="password" placeholder="Senha">
+            </div>
+            <div class="form-group">
+                <button>ENTRAR</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
