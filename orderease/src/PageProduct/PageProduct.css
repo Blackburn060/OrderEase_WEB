@@ -1,0 +1,107 @@
+body {
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1{
+color: black;
+
+  }
+
+  #header {
+    background-color: #203f97;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+
+  #logo {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+  }
+
+  #company-name {
+    font-size: 18px;
+  }
+
+  #user-name {
+    font-size: 18px;
+    display: flex; /* Para alinhar a foto e o nome verticalmente */
+    align-items: center;
+  }
+
+  #user-photo {
+    border-radius: 50%; /* Bordas arredondadas para a foto de perfil */
+    width: 30px; /* Largura da foto de perfil */
+    height: 30px; /* Altura da foto de perfil */
+    margin-left: 10px; /* Espaçamento entre a foto e o nome */
+  }
+
+  #menu-toggle {
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #203f97;
+  }
+
+  #sidebar {
+    background-color: #203f97;
+    width: 250px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    transition: left 0.3s;
+  }
+
+  #search-bar-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  #search-bar {
+    width: 30%;
+    padding: 5px;
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  #footer {
+    background-color: #203f97;
+    text-align: center;
+    padding: 3px; /* Altura do rodapé reduzida */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    font-size: 10px; /* Tamanho da fonte reduzido */
+  }
+
+  @media (max-width: 768px) {
+    #header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    #logo {
+      width: 30px;
+      height: 30px;
+    }
+
+    #company-name {
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    #user-name {
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    #search-bar-container {
+      justify-content: center;
+    }
+  }
