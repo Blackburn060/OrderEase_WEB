@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import "./PageProduct.css";
 import Images from "../Images/LogoExemplo.png";
 
