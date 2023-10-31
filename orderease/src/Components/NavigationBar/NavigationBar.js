@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-/* import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"; */
 import "./NavigationBar.css";
 import ImageLogo from "../../Images/LogoExemplo.png";
 import IconSearch from "../../Images/IconeLupaBarraNavegacao.png";
 import MenuIcon from "../../Images/IconeHamburguerMenuLateral.png";
 import CloseIcon from "../../Images/IconeVoltarMenuLateral2.png";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function NavigationBar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -74,7 +73,9 @@ function NavigationBar() {
         </div>
         <div className="navbar-right">
           <span>Nome do Usuário</span>
-          <img src={ImageLogo} alt="Logo do Usuário" className="user-logo" />
+          <Link to="/PageLogin">
+            <img src={ImageLogo} alt="Logo do Usuário" className="user-logo" />
+          </Link>
         </div>
       </div>
       <div className="footer">
