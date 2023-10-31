@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,60 +9,82 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #10279c; 
+            background-color: #203f97;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
         }
+
         .container {
             display: flex;
-            width: 80%; 
+            width: 80%;
         }
+
         .left-side {
             flex: 1;
             overflow: hidden;
+            border: 2px solid #fff;
+            border-radius: 10px;
         }
+
         .left-side img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid white;
         }
+
+        .divider {
+            width: 10px;
+        }
+
         .right-side {
             flex: 1;
-            background-color: transparent; 
+            background-color: transparent;
             padding: 20px;
-            border: 2px solid #fff; 
+            border: 2px solid #fff;
             border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+
         .right-side h1 {
             text-transform: uppercase;
-            color: #fff; 
+            color: #fff;
             text-align: center;
         }
+
         .form-group {
             margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+
         .form-group input {
             width: 100%;
             padding: 10px;
             border: none;
             border-bottom: 1px solid #fff;
             background: transparent;
-            color: #fff; 
+            color: #fff;
             margin-bottom: 20px;
         }
+
         .form-group input::placeholder {
-            color: #fff; 
+            color: #fff;
         }
 
         .form-group button {
             width: 100%;
             padding: 10px;
             border: none;
-            background-color: transparent; 
-            color: #fff; 
-            border: 2px solid #fff; 
+            background-color: transparent;
+            color: #fff;
+            border: 2px solid #fff;
             border-radius: 5px;
             cursor: pointer;
         }
@@ -70,9 +93,9 @@
 <body>
     <div class="container">
         <div class="left-side">
-            <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.hoteis.com%2Fgo%2Fbrasil%2Fbr-melhores-restaurantes-belo-horizonte&psig=AOvVaw3k4JSlk6asaOCIhmdwdfpu&ust=1698355821214000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCJCf_72SkoIDFQAAAAAdAAAAABAI" alt="Imagem de fundo" width="60" height="40">
-
+            <img src="https://www.cnnbrasil.com.br/viagemegastronomia/wp-content/uploads/sites/5/2022/08/votre-brasserie.jpeg?w=1200&h=675&crop=1.jpgs" alt="Imagem de fundo" width="60" height="40">
         </div>
+        <div class="divider"></div>
         <div class="right-side">
             <h1>LOGIN</h1>
             <div class="form-group">
