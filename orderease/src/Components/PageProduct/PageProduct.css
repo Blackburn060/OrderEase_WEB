@@ -1,120 +1,60 @@
-body {
-  color: white;
-  font-family: Lato;
-  margin: 0;
-  padding: 0;
-}
-
-h1 {
-  color: black;
-}
-
-#header {
-  background-color: #203f97;
+.title-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.7%;
-  position: relative; /* Adicione esta linha */
+  align-items: flex-start; /* Alinha o título no topo */
+  padding-left: 165px; /* Aumente o valor de padding-left para mover o título para a esquerda */
+  text-align: left; /* Alinha o texto à esquerda */
 }
-
-#logo {
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-}
-
-#company-name { /* nome da empresa */
-  font-size: 22px;
-  position: relative; /* Adicione esta linha */
-  top: -20px;
-  left: 70px;
-  z-index: 3;
-}
-
-#user-name { /* nome do usuario */
-  font-size: 18px;
-  display: flex; /* Para alinhar a foto e o nome verticalmente */
-  align-items: center;
-}
-
-#user-photo {
-  border-radius: 50%; /* Bordas arredondadas para a foto de perfil */
-  width: 30px; /* Largura da foto de perfil */
-  height: 30px; /* Altura da foto de perfil */
-  margin-left: 10px; /* Espaçamento entre a foto e o nome */
-}
-
-#menu-toggle {
-  /* Menu lateral Hamburguer */
-  font-size: 27px;
-  cursor: pointer;
-  position: absolute; /* Altere para 'absolute' */
-  top: 75px; /* Ajuste este valor para abaixar o ícone */
-  left: 0.1px;
-  padding: 10px;
-  background-color: #203F97;
-  z-index: 2; /* Defina um valor maior de z-index */
-}
-
-#sidebar {
-  /* barra lateral esquerda */
-  background-color: #203f97;
-  width: 294px;
-  height: 91%;
-  position: fixed;
-  top: 75px;
-  left: -250px;
-  transition: left 0.3s;
-  z-index: 1; /* Defina um valor menor de z-index */
-}
-
-#search-bar-container { /* barra de pesquisa */
-  flex-grow: 1;
+.ProdutosCadastrados {
+  width: 300px; /* Largura */
+  height: 500px; /* Altura (mesma que a largura para criar um quadrado) */
+  border-radius: 10px; /* Bordas arredondadas */
+  background-color: #f0f0f0; /* Cor de fundo */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Efeito de elevação */
+  position: absolute;
+  top: 55%; /* Mantém a div centralizada verticalmente */
+  left: 8%; /* Move a div para a esquerda (ajuste conforme necessário) */
+  transform: translate(0, -50%); /* Mantém a div centralizada verticalmente */
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+
+/* Estilos para a segunda div quadrada */
+
+.NomeDadosProdutos {
+  width: 800px; /* Largura maior */
+  height: 500px; /* Altura */
+  border-radius: 10px; /* Bordas arredondadas */
+  background-color: #f0f0f0; /* Cor de fundo */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Efeito de elevação */
+  position: absolute;
+  top: 0.1%; /* Mantém a div no topo (ajuste conforme necessário) */
+  right: -300%; /* Move a div para a direita (ajuste conforme necessário) */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Alinha no topo verticalmente */
+  align-items: center;
   
 }
 
-#search-bar {
-  width: 30%;
-  padding: 5px;
-  border-radius: 10px 10px 10px 10px;
+/* Estilos para o texto no topo da segunda div quadrada */
+.top-text {
+  text-align: center; /* Alinha o texto ao centro */
+  padding: 10px; /* Espaçamento interno para o texto no topo */
+  background-color: #ffffff; /* Cor de fundo do texto no topo */
+  color: rgb(6, 6, 6); /* Cor do texto no topo */
+  border-radius: 10px 10px 0 0; /* Bordas arredondadas apenas no topo */
+  border: 1px solid black; /* Adiciona borda preta */
 }
 
-#footer {
-  background-color: #203f97;
-  text-align: center;
-  padding: 8.4px; /* Altura do rodapé reduzida */
-  position: absolute;
-  bottom: 0;
-  width: 99%;
-  font-size: 10px; /* Tamanho da fonte reduzido */
-  z-index: 2; /* Defina um valor maior de z-index */
+/* Estilos para os parágrafos na segunda div */
+.NomeDadosProdutos p {
+  margin: 0; /* Remover a margem padrão dos parágrafos */
 }
 
-@media (max-width: 768px) {
-  #header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  #logo {
-    width: 30px;
-    height: 40px;
-  }
-
-  #company-name {
-    font-size: 16px;
-    margin-top: 10px;
-  }
-
-  #user-name {
-    font-size: 16px;
-    margin-top: 10px;
-  }
-
-  #search-bar-container {
-    justify-content: center;
-  }
+/* Estilos para alinhar os parágrafos lado a lado */
+.NomeDadosProdutos .top-text p {
+  display: inline-block; /* Tornar os parágrafos em linha */
+  margin: 0 10px; /* Adicionar margem entre eles para espaçamento */
 }
