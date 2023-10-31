@@ -15,7 +15,6 @@ function PageLogin() {
           height="40"
         ></img>
       </div>
-      {/* <div class="divider"></div> */}
       <div class="right-side">
         <div className="container-right-side">
           <h1>LOGIN</h1>
