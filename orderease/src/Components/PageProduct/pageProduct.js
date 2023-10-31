@@ -2,9 +2,13 @@ import "./PageProduct.css";
 import NavigationBar from "../NavigationBar/NavigationBar";
 
 function pageProduct() {
-
   return (
-    <NavigationBar />
+    <div>
+      <NavigationBar />
+      <title>
+        Marcelo gostoso
+      </title>
+    </div>
   );
 }
 
