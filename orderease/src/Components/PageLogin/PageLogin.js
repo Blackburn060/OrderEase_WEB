@@ -1,10 +1,10 @@
 import NavigationBar from "../NavigationBar/NavigationBar";
 
-function PageMenu() {
+function PageLogin() {
 
   return (
     <NavigationBar />
   );
 }
 
-export default PageMenu;
+export default PageLogin;
