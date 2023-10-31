@@ -19,7 +19,7 @@ function App() {
         <Route path="/PageTables" element={<PageTables />} />
         <Route path="/PageWaiters" element={<PageWaiters />} />
         <Route path="/PageRequests" element={<PageRequests />} />
-        <Route path="/pageProduct" element={<PageSettings />} />
+        <Route path="/PageSettings" element={<PageSettings />} />
       </Routes>
     </Router>
   );

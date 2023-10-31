@@ -43,7 +43,19 @@ function NavigationBar() {
             <Link to="/pageProduct">Produtos</Link>
           </li>
           <li>
-            <Link to="/contact">Contact</Link>
+            <Link to="/PageMenu">Cardápio</Link>
+          </li>
+          <li>
+            <Link to="/PageTables">Mesas</Link>
+          </li>
+          <li>
+            <Link to="/PageWaiters">Garçons</Link>
+          </li>
+          <li>
+            <Link to="/PageRequests">Pedidos</Link>
+          </li>
+          <li>
+            <Link to="/PageSettings">Configurações</Link>
           </li>
         </ul>
       </div>
