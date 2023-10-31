@@ -7,6 +7,7 @@ import PageTables from "./Components/PageTables/PageTables";
 import PageWaiters from "./Components/PageWaiters/PageWaiters";
 import PageRequests from "./Components/PageRequests/PageRequests";
 import PageSettings from "./Components/PageSettings/PageSettings";
+import PageLogin from "./Components/PageLogin/PageLogin.js";
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
         <Route path="/PageTables" element={<PageTables />} />
         <Route path="/PageWaiters" element={<PageWaiters />} />
         <Route path="/PageRequests" element={<PageRequests />} />
-        <Route path="/pageProduct" element={<PageSettings />} />
+        <Route path="/PageSettings" element={<PageSettings />} />
+        <Route path="/PageLogin" element={<PageLogin />} />
       </Routes>
     </Router>
   );

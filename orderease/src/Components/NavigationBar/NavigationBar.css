@@ -76,6 +76,28 @@ input {
   box-shadow: 10px 5px 7px 0px rgba(0, 0, 0, 0.25);
 }
 
+.sidebar ul {
+  
+  font-size: 24px;
+  list-style-type: none;
+}
+
+.sidebar ul li {
+  margin-bottom: 20px;
+  margin-left: -18%;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+/* Estilização para links em estado de hover (mouse sobre o link) */
+.sidebar ul li a:hover {
+  text-decoration: underline; /* Adicionar sublinhado ao passar o mouse sobre o link */
+  color: #147aff; /* Alterar a cor do link ao passar o mouse sobre ele */
+}
+
 .menu-header {
   position: relative;
   top: 3.5%;
