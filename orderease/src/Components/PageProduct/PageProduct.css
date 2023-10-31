@@ -9,11 +9,6 @@ h1 {
   color: black;
 }
 
-title {
-  justify-content: space-between;
-  color: black;
-}
-
 #header {
   background-color: #203f97;
   display: flex;
@@ -29,8 +24,7 @@ title {
   height: 50px;
 }
 
-#company-name {
-  /* nome da empresa */
+#company-name { /* nome da empresa */
   font-size: 22px;
   position: relative; /* Adicione esta linha */
   top: -20px;
@@ -38,8 +32,7 @@ title {
   z-index: 3;
 }
 
-#user-name {
-  /* nome do usuario */
+#user-name { /* nome do usuario */
   font-size: 18px;
   display: flex; /* Para alinhar a foto e o nome verticalmente */
   align-items: center;
@@ -60,7 +53,7 @@ title {
   top: 75px; /* Ajuste este valor para abaixar o ícone */
   left: 0.1px;
   padding: 10px;
-  background-color: #203f97;
+  background-color: #203F97;
   z-index: 2; /* Defina um valor maior de z-index */
 }
 
@@ -76,11 +69,11 @@ title {
   z-index: 1; /* Defina um valor menor de z-index */
 }
 
-#search-bar-container {
-  /* barra de pesquisa */
+#search-bar-container { /* barra de pesquisa */
   flex-grow: 1;
   display: flex;
   justify-content: center;
+  
 }
 
 #search-bar {
