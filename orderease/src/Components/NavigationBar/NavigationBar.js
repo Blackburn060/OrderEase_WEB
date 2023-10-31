@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+/* import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"; */
 import "./NavigationBar.css";
-import ImageLogo from "../Images/LogoExemplo.png";
-import IconSearch from "../Images/IconeLupaBarraNavegacao.png";
-import MenuIcon from "../Images/IconeHamburguerMenuLateral.png";
-import CloseIcon from "../Images/IconeVoltarMenuLateral2.png";
+import ImageLogo from "../../Images/LogoExemplo.png";
+import IconSearch from "../../Images/IconeLupaBarraNavegacao.png";
+import MenuIcon from "../../Images/IconeHamburguerMenuLateral.png";
+import CloseIcon from "../../Images/IconeVoltarMenuLateral2.png";
+import { Link } from 'react-router-dom';
 
 function NavigationBar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -33,11 +35,16 @@ function NavigationBar() {
         <div className="menu-icon-right">
           <img src={menuIcon} alt="Menu Icon" onClick={toggleSidebar} />
         </div>
-        {/* Adicione os itens do menu aqui */}
         <ul>
-          <li>Item 1</li>
-          <li>Item 2</li>
-          <li>Item 3</li>
+          <li>
+            <Link to="/home">Início</Link>
+          </li>
+          <li>
+            <Link to="/pageProduct">Produtos</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact</Link>
+          </li>
         </ul>
       </div>
       <div className="navbar">
