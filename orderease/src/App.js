@@ -8,10 +8,13 @@ import PageWaiters from "./Components/PageWaiters/PageWaiters";
 import PageRequests from "./Components/PageRequests/PageRequests";
 import PageSettings from "./Components/PageSettings/PageSettings";
 import PageLogin from "./Components/PageLogin/PageLogin.js";
+import NavigationBar from "./Components/NavigationBar/NavigationBar";
 
 function App() {
   return (
+  
     <Router>
+      <NavigationBar />  
       <Routes>
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<PageHome />} />
@@ -23,7 +26,7 @@ function App() {
         <Route path="/PageSettings" element={<PageSettings />} />
         <Route path="/PageLogin" element={<PageLogin />} />
       </Routes>
-    </Router>
+        </Router>
   );
 }
 

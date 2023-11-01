@@ -16,45 +16,60 @@
   transform: translate(0, -50%); /* Mantém a div centralizada verticalmente */
   display: flex;
   justify-content: center;
+  border: 1px solid black;
   align-items: center;
 }
-
 
 /* Estilos para a segunda div quadrada */
 
 .NomeDadosProdutos {
-  width: 800px; /* Largura maior */
-  height: 500px; /* Altura */
-  border-radius: 10px; /* Bordas arredondadas */
-  background-color: #f0f0f0; /* Cor de fundo */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Efeito de elevação */
+  width: 800px;
+  height: 500px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #f0f0f0;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   position: absolute;
-  top: 0.1%; /* Mantém a div no topo (ajuste conforme necessário) */
-  right: -300%; /* Move a div para a direita (ajuste conforme necessário) */
+  top: 0.1%;
+  right: -300%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Alinha no topo verticalmente */
+  justify-content: flex-start;
   align-items: center;
-  
+  border: 1px solid black;
 }
 
-/* Estilos para o texto no topo da segunda div quadrada */
+/* Estilos para o título da div "ProdutosCadastrados" */
+.ProdutosCadastrados h2 {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  margin: 0;
+  width: 97.4%;
+  margin-top: -150%;
+  border-radius: 10px 10px 0 0;
+  border: 1px solid black; /* Adiciona borda preta ao título */
+}
+
+/* Estilos comuns para textos */
+
+/* Estilos para o texto no topo da segunda div e título */
 .top-text {
-  text-align: center; /* Alinha o texto ao centro */
-  padding: 10px; /* Espaçamento interno para o texto no topo */
-  background-color: #ffffff; /* Cor de fundo do texto no topo */
-  color: rgb(6, 6, 6); /* Cor do texto no topo */
-  border-radius: 10px 10px 0 0; /* Bordas arredondadas apenas no topo */
-  border: 1px solid black; /* Adiciona borda preta */
+  background-color: #ffffff;
+  color: rgb(6, 6, 6);
+  border-radius: 10px 10px 0 0;
+  border: 1px solid black;
+  padding: 10px;
+  width: 97.4%;
 }
 
 /* Estilos para os parágrafos na segunda div */
 .NomeDadosProdutos p {
-  margin: 0; /* Remover a margem padrão dos parágrafos */
+  margin: 0;
 }
 
 /* Estilos para alinhar os parágrafos lado a lado */
 .NomeDadosProdutos .top-text p {
-  display: inline-block; /* Tornar os parágrafos em linha */
-  margin: 0 10px; /* Adicionar margem entre eles para espaçamento */
+  display: inline-block;
+  margin: 0 100px;
 }
