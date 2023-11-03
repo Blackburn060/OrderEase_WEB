@@ -1,14 +1,14 @@
 import React from "react";
 import {BrowserRouter as Router, Routes, Route, Navigate,} from "react-router-dom";
-import PageHome from "./components/PageHome/PageHome";
-import PageProduct from "./components/PageProduct/pageProduct";
-import PageMenu from "./components/PageMenu/PageMenu";
-import PageTables from "./components/PageTables/PageTables";
-import PageWaiters from "./components/PageWaiters/PageWaiters";
-import PageRequests from "./components/PageRequests/PageRequests";
-import PageSettings from "./components/PageSettings/PageSettings";
-import PageLogin from "./components/PageLogin/PageLogin";
-import NavigationBar from "./components/NavigationBar/NavigationBar";
+import PageHome from "./Components/ComponentPageHome/PageHome";
+import PageProduct from "./Components/ComponentPageProduct/pageProduct";
+import PageMenu from "./Components/ComponentPageMenu/PageMenu";
+import PageTables from "./Components/ComponentPageTables/PageTables";
+import PageWaiters from "./Components/ComponentPageWaiters/PageWaiters";
+import PageRequests from "./Components/ComponentPageRequests/PageRequests";
+import PageSettings from "./Components/ComponentPageSettings/PageSettings";
+import PageLogin from "./Components/ComponentPageLogin/PageLogin";
+import NavigationBar from "./Components/ComponentNavigationBar/NavigationBar";
 
 function App() {
   return (

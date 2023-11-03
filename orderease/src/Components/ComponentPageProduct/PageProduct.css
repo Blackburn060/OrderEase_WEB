@@ -5,23 +5,23 @@
 .title-container h1 {
   color: #000;
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 35px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 }
 
 .ButtonNewProduct button {
-  margin-top: 2rem;
-  margin-left: 14rem;
-  width: 7.2rem;
-  height: 2.8rem;
+  margin-top: 2.5vh;
+  margin-left: 17vw;
+  width: 7.2vw;
+  height: 6vh;
   flex-shrink: 0;
   border-radius: 16px;
   background: #203f97;
   color: #fff;
   text-align: center;
-  font-size: 30px;
+  font-size: 28px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -45,11 +45,11 @@
 
 .ProductsRegistered {
   position: absolute;
-  width: 20rem;
-  height: 40rem;
+  width: 23%;
+  height: 75%;
   flex-shrink: 0;
-  margin-top: 8rem;
-  margin-left: 10rem;
+  margin-top: 100px;
+  margin-left: 130px;
   border-radius: 10px;
   border: 1px solid #000;
   background: #fff;
@@ -59,8 +59,8 @@
 }
 
 .ProductsRegisteredTittle {
-  width: 20rem;
-  height: 3rem;
+  width: 23vw;
+  height: 6vh;
   flex-shrink: 0;
   border-radius: 10px 10px 0 0;
   border-bottom: 2px solid #000;
@@ -70,9 +70,9 @@
   z-index: 1;
 }
 
-.ProductsRegisteredTittle h1 {
+.ProductsRegisteredTittle h2 {
   color: #000;
-  font-size: 2.5rem;
+  font-size: 1.6vw; 
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -80,11 +80,11 @@
 
 .DetailedProductData {
   position: absolute;
-  width: 57rem;
-  height: 40rem;
+  width: 61vw;
+  height: 72vh;
   flex-shrink: 0;
-  margin-top: 8rem;
-  margin-left: 34rem;
+  margin-top: 11vh;
+  margin-left: 36vw;
   border-radius: 10px;
   border: 1px solid #000;
   background: #fff;
@@ -94,8 +94,8 @@
 }
 
 .DetailedProductDataTittle {
-  width: 57rem;
-  height: 3rem;
+  width: 61vw;
+  height: 6vh;
   flex-shrink: 0;
   border-radius: 10px 10px 0 0;
   border-bottom: 2px solid #000;
@@ -105,10 +105,15 @@
   z-index: 1;
 }
 
-.DetailedProductDataTittle h1 {
+.DetailedProductDataTittle h2 {
   color: #000;
-  font-size: 2.5rem;
+  font-size: 1.6vw;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+}
+
+
+@media screen and (max-width: 768px) {
+
 }
