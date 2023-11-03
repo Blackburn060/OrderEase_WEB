@@ -1,32 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./NavigationBar.css";
-import ImageLogo from "../../Images/LogoExemplo.png";
-import IconSearch from "../../Images/IconeLupaBarraNavegacao.png";
-import MenuIcon from "../../Images/IconeHamburguerMenuLateral.png";
-import CloseIcon from "../../Images/IconeVoltarMenuLateral2.png";
+import ImageLogo from "../../assets/Images/LogoExemplo.png";
+import IconSearch from "../../assets/Images/IconeLupaBarraNavegacao.png";
+import MenuIcon from "../../assets/Images/IconeHamburguerMenuLateral.png";
+import CloseIcon from "../../assets/Images/IconeVoltarMenuLateral2.png";
 import { Link } from "react-router-dom";
 
 function NavigationBar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [menuIcon, setMenuIcon] = useState(MenuIcon);
+  const [overlayVisible, setOverlayVisible] = useState(false); // Novo estado para a tela de sobreposição
+
+  useEffect(() => {
+    // Adicione um event listener para detectar cliques no documento inteiro
+    document.addEventListener("click", handleDocumentClick);
+
+    return () => {
+      // Remova o event listener ao desmontar o componente
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, []);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
     setMenuIcon(sidebarOpen ? MenuIcon : CloseIcon);
+    setOverlayVisible(!overlayVisible); // Mostrar ou esconder a tela de sobreposição
+  };
 
-    // Adicione ou remova a classe 'open' com base no estado do menu
+  const handleDocumentClick = (e) => {
+    // Verifique se o clique ocorreu fora do menu lateral
     const sidebar = document.querySelector(".sidebar");
-    if (sidebar) {
-      if (sidebarOpen) {
-        sidebar.classList.add("open");
-      } else {
-        sidebar.classList.remove("open");
-      }
+    if (sidebar && !sidebar.contains(e.target)) {
+      setSidebarOpen(false);
+      setMenuIcon(MenuIcon);
+      setOverlayVisible(false); // Esconder a tela de sobreposição
     }
   };
 
+
   return (
     <div className="page">
+      {overlayVisible && <div className="SideBarOverlay" onClick={toggleSidebar} />}
       <div className={`sidebar ${sidebarOpen ? "open" : ""}`}>
         <div className="menu-header">
           <span>Menu</span>
@@ -36,25 +50,25 @@ function NavigationBar() {
         </div>
         <ul>
           <li>
-            <Link to="/home">Início</Link>
+            <Link to="/home" onClick={toggleSidebar}>Início</Link>
           </li>
           <li>
-            <Link to="/pageProduct">Produtos</Link>
+            <Link to="/pageProduct" onClick={toggleSidebar}>Produtos</Link>
           </li>
           <li>
-            <Link to="/PageMenu">Cardápio</Link>
+            <Link to="/PageMenu" onClick={toggleSidebar}>Cardápio</Link>
           </li>
           <li>
-            <Link to="/PageTables">Mesas</Link>
+            <Link to="/PageTables" onClick={toggleSidebar}>Mesas</Link>
           </li>
           <li>
-            <Link to="/PageWaiters">Garçons</Link>
+            <Link to="/PageWaiters" onClick={toggleSidebar}>Garçons</Link>
           </li>
           <li>
-            <Link to="/PageRequests">Pedidos</Link>
+            <Link to="/PageRequests" onClick={toggleSidebar}>Pedidos</Link>
           </li>
           <li>
-            <Link to="/PageSettings">Configurações</Link>
+            <Link to="/PageSettings" onClick={toggleSidebar}>Configurações</Link>
           </li>
         </ul>
       </div>

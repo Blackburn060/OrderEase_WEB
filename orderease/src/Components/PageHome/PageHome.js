@@ -1,9 +1,8 @@
-import NavigationBar from "../NavigationBar/NavigationBar";
-
 function PageHome() {
-
   return (
-    <NavigationBar />
+    <>
+      <h1>teste</h1>
+    </>
   );
 }
 

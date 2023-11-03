@@ -1,20 +1,19 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import PageHome from "./Components/PageHome/PageHome";
-import PageProduct from "./Components/PageProduct/pageProduct";
-import PageMenu from "./Components/PageMenu/PageMenu";
-import PageTables from "./Components/PageTables/PageTables";
-import PageWaiters from "./Components/PageWaiters/PageWaiters";
-import PageRequests from "./Components/PageRequests/PageRequests";
-import PageSettings from "./Components/PageSettings/PageSettings";
-import PageLogin from "./Components/PageLogin/PageLogin.js";
-import NavigationBar from "./Components/NavigationBar/NavigationBar";
+import {BrowserRouter as Router, Routes, Route, Navigate,} from "react-router-dom";
+import PageHome from "./components/PageHome/PageHome";
+import PageProduct from "./components/PageProduct/pageProduct";
+import PageMenu from "./components/PageMenu/PageMenu";
+import PageTables from "./components/PageTables/PageTables";
+import PageWaiters from "./components/PageWaiters/PageWaiters";
+import PageRequests from "./components/PageRequests/PageRequests";
+import PageSettings from "./components/PageSettings/PageSettings";
+import PageLogin from "./components/PageLogin/PageLogin";
+import NavigationBar from "./components/NavigationBar/NavigationBar";
 
 function App() {
   return (
-  
     <Router>
-      <NavigationBar />  
+      <NavigationBar />
       <Routes>
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<PageHome />} />
@@ -26,7 +25,7 @@ function App() {
         <Route path="/PageSettings" element={<PageSettings />} />
         <Route path="/PageLogin" element={<PageLogin />} />
       </Routes>
-        </Router>
+    </Router>
   );
 }
 

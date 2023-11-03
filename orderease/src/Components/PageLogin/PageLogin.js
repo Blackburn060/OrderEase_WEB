@@ -1,8 +1,8 @@
 /* import NavigationBar from "../NavigationBar/NavigationBar"; */
 import "./PageLogin.css";
-import ImageLoginExample from "../../Images/ImagemPaginaLogin.jpg";
-import IconUser from "../../Images/IconeUserLoginPage.png";
-import IconPassword from "../../Images/IconeCadeadoLogin.png";
+import ImageLoginExample from "../../assets/Images/ImagemPaginaLogin.jpg";
+import IconUser from "../../assets/Images/IconeUserLoginPage.png";
+import IconPassword from "../../assets/Images/IconeCadeadoLogin.png";
 
 function PageLogin() {
   return (
