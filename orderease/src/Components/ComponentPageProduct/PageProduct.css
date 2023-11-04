@@ -11,13 +11,17 @@
   line-height: normal;
 }
 
+.ButtonNewProduct {
+  margin-top: 25px;
+  margin-left: 14%;
+}
+
 .ButtonNewProduct button {
-  margin-top: 2.5vh;
-  margin-left: 17vw;
-  width: 7.2vw;
-  height: 6vh;
+  width: 4em;
+  height: 1.5em;
   flex-shrink: 0;
   border-radius: 16px;
+  border: none;
   background: #203f97;
   color: #fff;
   text-align: center;
@@ -26,8 +30,6 @@
   font-weight: 700;
   line-height: normal;
   display: inline-block;
-  color: #fff;
-  border: none;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
@@ -45,21 +47,20 @@
 
 .ProductsRegistered {
   position: absolute;
-  width: 23%;
+  width: 20%;
   height: 75%;
   flex-shrink: 0;
   margin-top: 100px;
-  margin-left: 130px;
+  margin-left: 8%;
   border-radius: 10px;
   border: 1px solid #000;
   background: #fff;
   box-shadow: 10px 0px 10px 0px rgba(0, 0, 0, 0.25);
-  z-index: -1;
   display: flex;
 }
 
 .ProductsRegisteredTittle {
-  width: 23vw;
+  width: 100%;
   height: 6vh;
   flex-shrink: 0;
   border-radius: 10px 10px 0 0;
@@ -72,7 +73,7 @@
 
 .ProductsRegisteredTittle h2 {
   color: #000;
-  font-size: 1.6vw; 
+  font-size: 1.3vw;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -80,21 +81,20 @@
 
 .DetailedProductData {
   position: absolute;
-  width: 61vw;
-  height: 72vh;
+  width: 63%;
+  height: 75%;
   flex-shrink: 0;
-  margin-top: 11vh;
-  margin-left: 36vw;
+  margin-top: 100px;
+  margin-left: 30%;
   border-radius: 10px;
   border: 1px solid #000;
   background: #fff;
   box-shadow: 10px 0px 10px 0px rgba(0, 0, 0, 0.25);
-  z-index: -1;
   display: flex;
 }
 
 .DetailedProductDataTittle {
-  width: 61vw;
+  width: 100%;
   height: 6vh;
   flex-shrink: 0;
   border-radius: 10px 10px 0 0;
@@ -107,13 +107,61 @@
 
 .DetailedProductDataTittle h2 {
   color: #000;
-  font-size: 1.6vw;
+  font-size: 1.3vw;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 }
 
+@media screen and (max-width: 1600px) {
+  .ButtonNewProduct {
+    margin-top: 25px;
+    margin-left: 12%;
+  }
 
-@media screen and (max-width: 768px) {
+  .ButtonNewProduct button {
+    width: 4em;
+    height: 1.3em;
+    flex-shrink: 0;
+    border-radius: 16px;
+    border: none;
+    background: #203f97;
+    color: #fff;
+    text-align: center;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
 
+  .ProductsRegistered {
+    position: absolute;
+    width: 20%;
+    height: 70%;
+    flex-shrink: 0;
+    margin-top: 100px;
+    margin-left: 10%;
+    border-radius: 10px;
+    border: 1px solid #000;
+    background: #fff;
+    box-shadow: 10px 0px 10px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+  }
+
+  .DetailedProductData {
+    position: absolute;
+    width: 55%;
+    height: 70%;
+    flex-shrink: 0;
+    margin-top: 100px;
+    margin-left: 32%;
+    border-radius: 10px;
+    border: 1px solid #000;
+    background: #fff;
+    box-shadow: 10px 0px 10px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+  }
 }
