@@ -6,7 +6,7 @@ function PageProduct() {
   const [productName, setProductName] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [productValue, setProductValue] = useState("");
-  const [imageBase64, setImageBase64] = useState(null);
+  const [imageBase64, setImageBase64] = useState(""); // Add state for the Base64 image
 
   const handleProductNameChange = (e) => {
     setProductName(e.target.value);
@@ -24,9 +24,9 @@ function PageProduct() {
     const selectedImage = e.target.files[0];
     if (selectedImage) {
       const reader = new FileReader();
-      reader.onload = (e) => {
-        const base64 = e.target.result;
-        setImageBase64(base64);
+      reader.onload = (event) => {
+        const base64WithoutPrefix = event.target.result.replace(/^data:image\/[a-zA-Z+]+;base64,/, '');
+        setImageBase64(base64WithoutPrefix);
       };
       reader.readAsDataURL(selectedImage);
     }
@@ -45,7 +45,7 @@ function PageProduct() {
       productName,
       productDescription,
       productValue,
-      imageBase64,
+      imageBase64, // Include the Base64 image
     };
 
     try {
@@ -54,7 +54,7 @@ function PageProduct() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(data), // Convert data to JSON
       });
 
       if (response.ok) {
@@ -62,7 +62,7 @@ function PageProduct() {
         setProductName("");
         setProductDescription("");
         setProductValue("");
-        setImageBase64(null);
+        setImageBase64("");
       } else {
         console.error("Erro ao cadastrar o produto");
       }
