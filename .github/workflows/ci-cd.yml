@@ -35,5 +35,5 @@ jobs:
         with:
           node-version: 14
 
-      - name: Run tests
+      - name: Run tests with Jest
         run: npm test
