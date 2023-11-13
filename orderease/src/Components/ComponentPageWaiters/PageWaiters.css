@@ -1,4 +1,4 @@
-.title-container {
+.WaitersTitle-container {
     display: flex;
     align-items: flex-start; /* Alinha o título no topo */
     padding-left: 165px; /* Aumente o valor de padding-left para mover o título para a esquerda */

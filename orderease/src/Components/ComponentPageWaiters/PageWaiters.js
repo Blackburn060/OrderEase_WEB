@@ -5,7 +5,7 @@ function PageWaiters() {
   return (
     <div className="page">
       <div className="content">
-        <div className="title-container">
+        <div className="WaitersTitle-container">
           <h1>Garçons</h1>
         </div>
         <div className="GarconsCadastrados">

@@ -73,8 +73,8 @@ function PageProduct() {
 
   return (
     <div className="page">
-      <div className="content">
-        <div className="title-container">
+      <div className="contentPageProduct">
+        <div className="ProductTitle-container">
           <h1>Produtos</h1>
         </div>
         <div className="ButtonNewProduct">

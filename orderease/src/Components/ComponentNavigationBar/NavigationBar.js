@@ -37,10 +37,11 @@ function NavigationBar() {
     }
   };
 
-
   return (
     <div className="page">
-      {overlayVisible && <div className="SideBarOverlay" onClick={toggleSidebar} />}
+      {overlayVisible && (
+        <div className="SideBarOverlay" onClick={toggleSidebar} />
+      )}
       <div className={`sidebar ${sidebarOpen ? "open" : ""}`}>
         <div className="menu-header">
           <span>Menu</span>
@@ -50,31 +51,47 @@ function NavigationBar() {
         </div>
         <ul>
           <li>
-            <Link to="/home" onClick={toggleSidebar}>Início</Link>
+            <Link to="/home" onClick={toggleSidebar}>
+              Início
+            </Link>
           </li>
           <li>
-            <Link to="/pageProduct" onClick={toggleSidebar}>Produtos</Link>
+            <Link to="/pageProduct" onClick={toggleSidebar}>
+              Produtos
+            </Link>
           </li>
           <li>
-            <Link to="/PageMenu" onClick={toggleSidebar}>Cardápio</Link>
+            <Link to="/PageMenu" onClick={toggleSidebar}>
+              Cardápio
+            </Link>
           </li>
           <li>
-            <Link to="/PageTables" onClick={toggleSidebar}>Mesas</Link>
+            <Link to="/PageTables" onClick={toggleSidebar}>
+              Mesas
+            </Link>
           </li>
           <li>
-            <Link to="/PageWaiters" onClick={toggleSidebar}>Garçons</Link>
+            <Link to="/PageWaiters" onClick={toggleSidebar}>
+              Garçons
+            </Link>
           </li>
           <li>
-            <Link to="/PageRequests" onClick={toggleSidebar}>Pedidos</Link>
+            <Link to="/PageRequests" onClick={toggleSidebar}>
+              Pedidos
+            </Link>
           </li>
           <li>
-            <Link to="/PageSettings" onClick={toggleSidebar}>Configurações</Link>
+            <Link to="/PageSettings" onClick={toggleSidebar}>
+              Configurações
+            </Link>
           </li>
         </ul>
       </div>
       <div className="navbar">
         <div className="navbar-left">
-          <img src={ImageLogo} alt="Logo da Empresa" className="logo" />
+          <Link to="/home">
+            <img src={ImageLogo} alt="Logo da Empresa" className="logo" />
+          </Link>
           <span>Nome da Empresa</span>
         </div>
         <div className="navbar-center">

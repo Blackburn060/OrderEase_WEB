@@ -1,0 +1,66 @@
+.contentPageHome {
+  display: flex;
+}
+
+.PageHomeTitle-container {
+  position: fixed;
+  display: flex;
+  flex-shrink: 0;
+  margin-top: 100px;
+  margin-left: 20%;
+  justify-content: center;
+  align-items: center;
+}
+
+.PageHomeTitle-container img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid #000;
+}
+
+.PageHomeTitle-container h1 {
+  padding-left: 10px;
+}
+
+.PageHomeImageCenter {
+  position: fixed;
+  width: 732px;
+  height: 238px;
+  flex-shrink: 0;
+  margin-top: 200px;
+  margin-left: 20%;
+  justify-content: center;
+  display: flex;
+}
+
+.PageHomeImageCenter img {
+  width: 100%;
+  height: 100%;
+}
+
+.PageHomeWhereItStopped {
+  display: flex;
+  position: fixed;
+  width: 732px;
+  height: 238px;
+  flex-shrink: 0;
+  margin-top: 440px;
+  margin-left: 20%;
+  font-size: small;
+}
+
+.RecentContent {
+  position: fixed;
+  width: 15%;
+  height: 75%;
+  flex-shrink: 0;
+  margin-top: 100px;
+  margin-left: 84%;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background: #fff;
+  box-shadow: -10px 0px 10px 0px rgba(0, 0, 0, 0.25);
+  justify-content: center;
+  display: flex;
+}
