@@ -6,7 +6,7 @@ function PageProduct() {
   const [productName, setProductName] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [productValue, setProductValue] = useState("");
-  const [imageBase64, setImageBase64] = useState(""); // Add state for the Base64 image
+  const [imageBase64, setImageBase64] = useState("");
 
   const handleProductNameChange = (e) => {
     setProductName(e.target.value);
@@ -45,7 +45,7 @@ function PageProduct() {
       productName,
       productDescription,
       productValue,
-      imageBase64, // Include the Base64 image
+      imageBase64,
     };
 
     try {
