@@ -6,7 +6,7 @@ body {
   margin: 0;
 }
 
-button {
+.buttonDefaultStyle {
   width: 4em;
   height: 1.5em;
   flex-shrink: 0;
@@ -23,13 +23,13 @@ button {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-button:hover {
+.buttonDefaultStyle:hover {
   background-color: #2a8bcc;
   box-shadow: 5px 5px 10px #000;
   transform: scale(1.1);
 }
 
-button:active {
+.buttonDefaultStyle:active {
   background-color: #2a8bcc;
   transform: scale(1);
 }

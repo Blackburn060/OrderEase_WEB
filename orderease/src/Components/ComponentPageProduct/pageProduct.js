@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+import React, { useState, useEffect } from "react";
+/* import { v4 as uuidv4 } from "uuid"; */
 import "./PageProduct.css";
 
 function PageProduct() {
@@ -12,6 +12,30 @@ function PageProduct() {
   const [showProgressBar, setShowProgressBar] = useState(false);
   const [progressWidth, setProgressWidth] = useState("0%");
   const [formKey, setFormKey] = useState(0);
+  const [productList, setProductList] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isEditMode, setIsEditMode] = useState(false);
+
+  useEffect(() => {
+    fetchProducts();
+
+    const intervalId = setInterval(() => {
+      fetchProducts();
+    }, 5000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  useEffect(() => {
+    if (selectedProduct) {
+      setProductName(selectedProduct.nome);
+      setProductDescription(selectedProduct.descricao);
+      setProductCategory(selectedProduct.categoria);
+      setProductValue(selectedProduct.valor);
+      setIsEditMode(true);
+      // A imagem não é atualizada aqui, pois é uma string base64 e você já tem isso no produto
+    }
+  }, [selectedProduct]);
 
   const handleProductNameChange = (e) => {
     setProductName(e.target.value);
@@ -51,20 +75,44 @@ function PageProduct() {
     setProductValue("");
     setImageBase64("");
     setFormKey((prevKey) => prevKey + 1); // Incrementa a chave para forçar a remontagem do componente
+    setIsEditMode(false);
+  };
+
+  const fetchProducts = async () => {
+    try {
+      const response = await fetch("http://localhost:3001/api/listar-produtos");
+      if (response.ok) {
+        const productsData = await response.json();
+        setProductList(productsData);
+      } else {
+        console.error("Erro ao buscar produtos:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Erro ao buscar produtos:", error);
+    }
+  };
+
+  const handleProductSelect = (product) => {
+    setSelectedProduct(product);
   };
 
   const handleSubmit = async () => {
-    if (!productName || !productDescription || !productCategory || !productValue || !imageBase64) {
+    if (
+      !productName ||
+      !productDescription ||
+      !productCategory ||
+      !productValue ||
+      !imageBase64
+    ) {
       alert(
         "Por favor, preencha todos os campos do formulário e selecione uma imagem."
       );
       return;
     }
 
-    const productId = uuidv4();
+    /* const productId = uuidv4(); */
 
     const data = {
-      productId,
       productName,
       productDescription,
       productValue,
@@ -105,15 +153,111 @@ function PageProduct() {
           setProgressWidth("0%");
         }, 4000);
 
-        setProductName("");
-        setProductDescription("");
-        setProductCategory("");
-        setProductValue("");
-        setImageBase64("");
-        setFormKey((prevKey) => prevKey + 1);
+        resetForm();
       } else {
         console.error("Erro ao cadastrar o produto");
         setServerResponse("Erro ao cadastrar o produto");
+        setShowProgressBar(true);
+
+        setProgressWidth("100%");
+        let startTime = Date.now();
+        const intervalId = setInterval(() => {
+          const elapsed = Date.now() - startTime;
+          const remainingTime = Math.max(4000 - elapsed, 0);
+          const width = `${(remainingTime / 4000) * 100}%`;
+          setProgressWidth(width);
+        }, 100);
+
+        setTimeout(() => {
+          setServerResponse(null);
+          setShowProgressBar(false);
+          clearInterval(intervalId);
+          setProgressWidth("0%");
+        }, 4000);
+      }
+    } catch (error) {
+      console.error("Erro durante a solicitação para o servidor:", error);
+      setServerResponse("Erro durante a solicitação para o servidor");
+      setShowProgressBar(true);
+
+      setProgressWidth("100%");
+      let startTime = Date.now();
+      const intervalId = setInterval(() => {
+        const elapsed = Date.now() - startTime;
+        const remainingTime = Math.max(4000 - elapsed, 0);
+        const width = `${(remainingTime / 4000) * 100}%`;
+        setProgressWidth(width);
+      }, 100);
+
+      setTimeout(() => {
+        setServerResponse(null);
+        setShowProgressBar(false);
+        clearInterval(intervalId);
+        setProgressWidth("0%");
+      }, 4000);
+    }
+  };
+
+  const handleUpdate = async () => {
+    if (
+      !productName ||
+      !productDescription ||
+      !productCategory ||
+      !productValue ||
+      !imageBase64
+    ) {
+      alert(
+        "Por favor, preencha todos os campos do formulário e selecione uma imagem."
+      );
+      return;
+    }
+  
+    const data = {
+      productName,
+      productDescription,
+      productValue,
+      imageBase64,
+      productCategory,
+    };
+  
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/atualizar-produto/${selectedProduct.id}`,
+        {
+          method: "PUT", // Corrigir o método HTTP para PUT
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data), // Convert data to JSON
+        }
+      );
+
+      if (response.ok) {
+        console.log("Produto atualizado com sucesso!");
+        setServerResponse("Produto atualizado com sucesso!");
+        setShowProgressBar(true);
+
+        setProgressWidth("100%");
+        let startTime = Date.now();
+        const intervalId = setInterval(() => {
+          const elapsed = Date.now() - startTime;
+          const remainingTime = Math.max(4000 - elapsed, 0);
+          const width = `${(remainingTime / 4000) * 100}%`;
+          setProgressWidth(width);
+        }, 100);
+
+        setTimeout(() => {
+          setServerResponse(null);
+          setShowProgressBar(false);
+          clearInterval(intervalId);
+          setProgressWidth("0%");
+        }, 4000);
+
+        resetForm();
+        setSelectedProduct(null);
+      } else {
+        console.error("Erro ao atualizar o produto");
+        setServerResponse("Erro ao atualizar o produto");
         setShowProgressBar(true);
 
         setProgressWidth("100%");
@@ -162,13 +306,25 @@ function PageProduct() {
           <h1>Produtos</h1>
         </div>
         <div className="ButtonNewProduct">
-          <button onClick={resetForm}>Novo</button>
+          <button className="buttonDefaultStyle" onClick={resetForm}>
+            {isEditMode ? "Cancelar" : "Novo"}
+          </button>
         </div>
         <div className="ProductsRegistered">
           <div className="ProductsRegisteredTittle">
             <h2>Produtos Cadastrados</h2>
           </div>
-          <div></div>
+          <div className="ProductsRegisteredDataContent">
+            <ul>
+              {productList.map((product) => (
+                <li key={product.id}>
+                  <button onClick={() => handleProductSelect(product)}>
+                    {product.nome}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
         <div className="DetailedProductData" key={formKey}>
           <div className="DetailedProductDataTittle">
@@ -217,9 +373,12 @@ function PageProduct() {
                 id="productImage"
                 onChange={handleImageChange}
               />
-
-              <button type="button" onClick={handleSubmit}>
-                Enviar
+              <button
+                className="buttonDefaultStyle"
+                type="button"
+                onClick={isEditMode ? handleUpdate : handleSubmit}
+              >
+                {isEditMode ? "Atualizar" : "Enviar"}
               </button>
             </form>
           </div>

@@ -8,7 +8,7 @@ function PageTables() {
           <h1>Mesas</h1>
         </div>
         <div className="ButtonNewTable">
-          <button>Novo</button>
+          <button className="buttonDefaultStyle">Novo</button>
         </div>
         <div className="DetailedTableData">
           <div className="DetailedTableDataTittle">

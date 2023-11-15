@@ -22,6 +22,7 @@
 
 .ButtonNewProduct button {
   font-size: 28px;
+  width: 5em;
 }
 
 .ProductsRegistered {
@@ -57,6 +58,41 @@
   font-weight: 700;
   line-height: normal;
 }
+
+.ProductsRegisteredDataContent {
+  position: fixed;
+  margin-top: 45px;
+}
+
+.ProductsRegisteredDataContent ul {
+  font-size: 1.2vw;
+  list-style-type: decimal;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ProductsRegisteredDataContent ul li {
+  margin-bottom: 20px;
+}
+
+.ProductsRegisteredDataContent button {
+background: none;
+border: none;
+border-radius: none;
+font-size: 1.2vw;
+cursor: pointer;
+}
+
+/* .ProductsRegisteredDataContent ul li a {
+  text-decoration: none;
+  color: white;
+} */
+
+/* .ProductsRegisteredDataContent ul li a:hover {
+  text-decoration: underline;
+  color: #147aff;
+} */
 
 .DetailedProductData {
   position: fixed;
@@ -145,6 +181,7 @@
 
 .DetailedProductDataContent button {
   font-size: 23px;
+  width: 5em;
 }
 
 .server-response {
