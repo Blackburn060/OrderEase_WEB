@@ -328,7 +328,7 @@ function PageProduct() {
         </div>
         <div className="DetailedProductData" key={formKey}>
           <div className="DetailedProductDataTittle">
-            <h2>Dados do Produto - </h2>
+            <h2>Dados do Produto</h2>
           </div>
           <div className="DetailedProductDataContent">
             <form>
