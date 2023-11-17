@@ -61,6 +61,7 @@ app.post("/api/adicionar-produto", async (req, res) => {
       productCategory,
       productValue,
       imageBase64,
+      productStatus,
     } = req.body;
 
     // Validação de campos
@@ -93,6 +94,7 @@ app.post("/api/adicionar-produto", async (req, res) => {
       descricao: productDescription,
       categoria: productCategory,
       valor: productValue,
+      status: productStatus,
       imageUri,
     });
 
@@ -109,19 +111,29 @@ app.post("/api/adicionar-produto", async (req, res) => {
 // Perform a get on the firestore api (Read)
 app.get("/api/listar-produtos", async (req, res) => {
   try {
-    const productsSnapshot = await db.collection("Produto").get();
+    let query = db.collection("Produto");
+
+    // Adiciona uma condição específica, se fornecida nos parâmetros da solicitação
+    if (req.query.status) {
+      query = query.where("status", "==", req.query.status);
+    }
+
+    const productsSnapshot = await query.get();
+
     const productsData = productsSnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));
+
     res.status(200).json(productsData);
+
   } catch (error) {
     console.error("Erro ao buscar produtos:", error);
     res.status(500).json({ error: "Erro interno do servidor" });
   }
 });
 
-// Adicione a seguinte rota à sua API para atualizar um produto existente
+// Route to update an existing product (update)
 app.put("/api/atualizar-produto/:productId", async (req, res) => {
   try {
     const { productId } = req.params;
@@ -187,6 +199,28 @@ app.put("/api/atualizar-produto/:productId", async (req, res) => {
   }
 });
 
+// Route to inactivate a product (delete)
+app.delete("/api/excluir-produto/:productId", async (req, res) => {
+  try {
+    const { productId } = req.params;
+
+    // Atualizar o status do produto para "Inativo"
+    const collectionRef = db.collection("Produto");
+    const productRef = collectionRef.doc(productId);
+
+    await productRef.update({
+      status: "Inativo",
+    });
+
+    console.log("Servidor: Produto excluído com sucesso!");
+    return res
+      .status(200)
+      .json({ message: "Servidor: Produto excluído com sucesso" });
+  } catch (error) {
+    console.error("Erro no servidor:", error);
+    return res.status(500).json({ error: "Erro interno do servidor" });
+  }
+});
 
 
 app.listen(PORT, () => {

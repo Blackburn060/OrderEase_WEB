@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-/* import { v4 as uuidv4 } from "uuid"; */
 import "./PageProduct.css";
 
 function PageProduct() {
@@ -34,7 +33,7 @@ function PageProduct() {
       setProductCategory(selectedProduct.categoria);
       setProductValue(selectedProduct.valor);
       setIsEditMode(true);
-      // A imagem não é atualizada aqui, pois é uma string base64 e você já tem isso no produto
+      // A imagem não é atualizada aqui, pois é uma string base64
     }
   }, [selectedProduct]);
 
@@ -81,7 +80,9 @@ function PageProduct() {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch("http://localhost:3001/api/listar-produtos");
+      const response = await fetch(
+        "http://localhost:3001/api/listar-produtos?status=Ativo"
+      );
       if (response.ok) {
         const productsData = await response.json();
         setProductList(productsData);
@@ -114,7 +115,7 @@ function PageProduct() {
       return;
     }
 
-    /* const productId = uuidv4(); */
+    const productStatus = "Ativo";
 
     const data = {
       productName,
@@ -122,6 +123,7 @@ function PageProduct() {
       productValue,
       imageBase64,
       productCategory,
+      productStatus,
     };
 
     try {
@@ -158,6 +160,8 @@ function PageProduct() {
         }, 4000);
 
         resetForm();
+        setSelectedProduct(null);
+        fetchProducts();
       } else {
         console.error("Erro ao cadastrar o produto");
         setServerResponse("Erro ao cadastrar o produto");
@@ -214,7 +218,7 @@ function PageProduct() {
       );
       return;
     }
-  
+
     const data = {
       productName,
       productDescription,
@@ -223,10 +227,10 @@ function PageProduct() {
     };
 
     // Adicione a imagem ao objeto de dados se estiver presente
-  if (imageBase64) {
-    data.imageBase64 = imageBase64;
-  }
-  
+    if (imageBase64) {
+      data.imageBase64 = imageBase64;
+    }
+
     try {
       const response = await fetch(
         `http://localhost:3001/api/atualizar-produto/${selectedProduct.id}`,
@@ -262,9 +266,91 @@ function PageProduct() {
 
         resetForm();
         setSelectedProduct(null);
+        fetchProducts();
       } else {
         console.error("Erro ao atualizar o produto");
         setServerResponse("Erro ao atualizar o produto");
+        setShowProgressBar(true);
+
+        setProgressWidth("100%");
+        let startTime = Date.now();
+        const intervalId = setInterval(() => {
+          const elapsed = Date.now() - startTime;
+          const remainingTime = Math.max(4000 - elapsed, 0);
+          const width = `${(remainingTime / 4000) * 100}%`;
+          setProgressWidth(width);
+        }, 100);
+
+        setTimeout(() => {
+          setServerResponse(null);
+          setShowProgressBar(false);
+          clearInterval(intervalId);
+          setProgressWidth("0%");
+        }, 4000);
+      }
+    } catch (error) {
+      console.error("Erro durante a solicitação para o servidor:", error);
+      setServerResponse("Erro durante a solicitação para o servidor");
+      setShowProgressBar(true);
+
+      setProgressWidth("100%");
+      let startTime = Date.now();
+      const intervalId = setInterval(() => {
+        const elapsed = Date.now() - startTime;
+        const remainingTime = Math.max(4000 - elapsed, 0);
+        const width = `${(remainingTime / 4000) * 100}%`;
+        setProgressWidth(width);
+      }, 100);
+
+      setTimeout(() => {
+        setServerResponse(null);
+        setShowProgressBar(false);
+        clearInterval(intervalId);
+        setProgressWidth("0%");
+      }, 4000);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!selectedProduct) {
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/excluir-produto/${selectedProduct.id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (response.ok) {
+        console.log("Produto excluído com sucesso!");
+        setServerResponse("Produto excluído com sucesso!");
+        setShowProgressBar(true);
+
+        setProgressWidth("100%");
+        let startTime = Date.now();
+        const intervalId = setInterval(() => {
+          const elapsed = Date.now() - startTime;
+          const remainingTime = Math.max(4000 - elapsed, 0);
+          const width = `${(remainingTime / 4000) * 100}%`;
+          setProgressWidth(width);
+        }, 100);
+
+        setTimeout(() => {
+          setServerResponse(null);
+          setShowProgressBar(false);
+          clearInterval(intervalId);
+          setProgressWidth("0%");
+        }, 4000);
+
+        resetForm();
+        setSelectedProduct(null);
+        fetchProducts();
+      } else {
+        console.error("Erro ao excluir o produto");
+        setServerResponse("Erro ao excluir o produto");
         setShowProgressBar(true);
 
         setProgressWidth("100%");
@@ -322,19 +408,19 @@ function PageProduct() {
             <h2>Produtos Cadastrados</h2>
           </div>
           <div className="ProductsRegisteredDataContent">
-          {fetchError ? (
-    <div className="FetchErrorMessage">{fetchError}</div>
-  ) : (
-    <ul>
-      {productList.map((product) => (
-        <li key={product.id}>
-          <button onClick={() => handleProductSelect(product)}>
-            {product.nome}
-          </button>
-        </li>
-      ))}
-    </ul>
-  )}
+            {fetchError ? (
+              <div className="FetchErrorMessage">{fetchError}</div>
+            ) : (
+              <ul>
+                {productList.map((product) => (
+                  <li key={product.id}>
+                    <button onClick={() => handleProductSelect(product)}>
+                      {product.nome}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
         <div className="DetailedProductData" key={formKey}>
@@ -390,6 +476,13 @@ function PageProduct() {
                 onClick={isEditMode ? handleUpdate : handleSubmit}
               >
                 {isEditMode ? "Atualizar" : "Enviar"}
+              </button>
+              <button
+                className="buttonDefaultStyle deleteButton"
+                type="button"
+                onClick={handleDelete}
+              >
+                Excluir
               </button>
             </form>
           </div>
