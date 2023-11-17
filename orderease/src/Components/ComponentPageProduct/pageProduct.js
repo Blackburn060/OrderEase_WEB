@@ -15,6 +15,7 @@ function PageProduct() {
   const [productList, setProductList] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isEditMode, setIsEditMode] = useState(false);
+  const [fetchError, setFetchError] = useState(null);
 
   useEffect(() => {
     fetchProducts();
@@ -84,11 +85,14 @@ function PageProduct() {
       if (response.ok) {
         const productsData = await response.json();
         setProductList(productsData);
+        setFetchError(null);
       } else {
         console.error("Erro ao buscar produtos:", response.statusText);
+        setFetchError("Erro ao buscar produtos!");
       }
     } catch (error) {
       console.error("Erro ao buscar produtos:", error);
+      setFetchError("Erro ao buscar produtos!");
     }
   };
 
@@ -318,15 +322,19 @@ function PageProduct() {
             <h2>Produtos Cadastrados</h2>
           </div>
           <div className="ProductsRegisteredDataContent">
-            <ul>
-              {productList.map((product) => (
-                <li key={product.id}>
-                  <button onClick={() => handleProductSelect(product)}>
-                    {product.nome}
-                  </button>
-                </li>
-              ))}
-            </ul>
+          {fetchError ? (
+    <div className="FetchErrorMessage">{fetchError}</div>
+  ) : (
+    <ul>
+      {productList.map((product) => (
+        <li key={product.id}>
+          <button onClick={() => handleProductSelect(product)}>
+            {product.nome}
+          </button>
+        </li>
+      ))}
+    </ul>
+  )}
           </div>
         </div>
         <div className="DetailedProductData" key={formKey}>

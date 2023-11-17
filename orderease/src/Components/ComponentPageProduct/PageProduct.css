@@ -80,7 +80,7 @@
   background: none;
   border: none;
   border-radius: none;
-  font-size: 1.8vh;
+  font-size: 2.2vh;
   cursor: pointer;
 }
 
@@ -93,6 +93,20 @@
   text-decoration: underline;
   color: #147aff;
 } */
+
+.FetchErrorMessage {
+  margin-left: 2vh;
+  margin-top: 1vh;
+  width: 100%;
+  padding: 1.3vh;
+  border-radius: 10px;
+  z-index: 2;
+  opacity: 0;
+  animation: fadeInOut 3s ease forwards;
+  background-color: #f44336;
+  color: white;
+  text-align: center;
+}
 
 .DetailedProductData {
   position: fixed;
@@ -132,15 +146,15 @@
 .DetailedProductDataContent {
   position: fixed;
   margin-top: 8vh;
-  width: 35%;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  background-color: #f9f9f9;
+  width: 37%;
 }
 
 .DetailedProductData form {
+  border: 1px solid #ccc;
+  padding: 15px;
   height: 50vh;
+  border-radius: 10px;
+  background-color: #f9f9f9;
 }
 
 .DetailedProductDataContent label {
@@ -162,6 +176,10 @@
   border-radius: 3px;
   resize: vertical;
   font-size: 1.8vh;
+}
+
+.DetailedProductDataContent input[type="file"] {
+  resize: none;
 }
 
 .DetailedProductDataContent input:focus,
