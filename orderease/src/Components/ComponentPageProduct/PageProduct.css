@@ -16,7 +16,7 @@
 
 .ButtonNewProduct {
   position: fixed;
-  margin-top: 25px;
+  margin-top: 3vh;
   margin-left: 40%;
 }
 
@@ -27,11 +27,11 @@
 
 .ProductsRegistered {
   position: fixed;
-  width: 17%;
+  width: 24%;
   height: 70%;
   flex-shrink: 0;
-  margin-top: 100px;
-  margin-left: 20%;
+  margin-top: 10vh;
+  margin-left: 13%;
   border-radius: 10px;
   border: 1px solid #000;
   background: #fff;
@@ -61,11 +61,11 @@
 
 .ProductsRegisteredDataContent {
   position: fixed;
-  margin-top: 45px;
+  margin-top: 6vh;
 }
 
 .ProductsRegisteredDataContent ul {
-  font-size: 1.2vw;
+  font-size: 2.3vh;
   list-style-type: decimal;
   display: flex;
   flex-direction: column;
@@ -77,11 +77,11 @@
 }
 
 .ProductsRegisteredDataContent button {
-background: none;
-border: none;
-border-radius: none;
-font-size: 1.2vw;
-cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: none;
+  font-size: 1.8vh;
+  cursor: pointer;
 }
 
 /* .ProductsRegisteredDataContent ul li a {
@@ -99,7 +99,7 @@ cursor: pointer;
   width: 40%;
   height: 70%;
   flex-shrink: 0;
-  margin-top: 100px;
+  margin-top: 10vh;
   margin-left: 40%;
   border-radius: 10px;
   border: 1px solid #000;
@@ -131,7 +131,7 @@ cursor: pointer;
 
 .DetailedProductDataContent {
   position: fixed;
-  margin-top: 60px;
+  margin-top: 8vh;
   width: 35%;
   padding: 20px;
   border: 1px solid #ccc;
@@ -139,7 +139,12 @@ cursor: pointer;
   background-color: #f9f9f9;
 }
 
+.DetailedProductData form {
+  height: 50vh;
+}
+
 .DetailedProductDataContent label {
+  font-size: 2.1vh;
   display: block;
   margin-bottom: 5px;
   font-style: normal;
@@ -150,11 +155,13 @@ cursor: pointer;
 .DetailedProductDataContent input,
 .DetailedProductDataContent textarea {
   width: 95%;
-  padding: 10px;
-  margin-bottom: 15px;
+  height: 2vh;
+  padding: 1.5vh;
+  margin-bottom: 1vh;
   border: 1px solid #ccc;
   border-radius: 3px;
   resize: vertical;
+  font-size: 1.8vh;
 }
 
 .DetailedProductDataContent input:focus,
@@ -166,12 +173,12 @@ cursor: pointer;
 
 .DetailedProductDataContent select {
   width: 95%;
-  padding: 10px;
-  margin-bottom: 15px;
+  padding: 1.5vh;
+  margin-bottom: 1vh;
   border: 1px solid #ccc;
   border-radius: 3px;
   resize: vertical;
-  font-size: 16px;
+  font-size: 1.7vh;
 }
 
 .DetailedProductDataContent select:focus {
@@ -180,17 +187,16 @@ cursor: pointer;
 }
 
 .DetailedProductDataContent button {
-  font-size: 23px;
+  font-size: 2.6vh;
   width: 5em;
 }
 
 .server-response {
   position: absolute;
-  top: 575px;
+  top: 64vh;
   width: 70%;
-  padding: 10px;
+  padding: 1.3vh;
   border-radius: 10px;
-  margin-bottom: 10px;
   z-index: 2;
   opacity: 0;
   animation: fadeInOut 3s ease forwards;
@@ -208,9 +214,8 @@ cursor: pointer;
 
 .progress-container {
   overflow: hidden;
-  margin-top: 5px;
   position: absolute;
-  top: 607px;
+  top: 68.6vh;
   width: 70%;
   z-index: 1;
   opacity: 0;

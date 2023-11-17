@@ -110,7 +110,10 @@ app.post("/api/adicionar-produto", async (req, res) => {
 app.get("/api/listar-produtos", async (req, res) => {
   try {
     const productsSnapshot = await db.collection("Produto").get();
-    const productsData = productsSnapshot.docs.map((doc) => doc.data());
+    const productsData = productsSnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
     res.status(200).json(productsData);
   } catch (error) {
     console.error("Erro ao buscar produtos:", error);
@@ -135,8 +138,7 @@ app.put("/api/atualizar-produto/:productId", async (req, res) => {
       !productName ||
       !productDescription ||
       !productCategory ||
-      !productValue ||
-      !imageBase64
+      !productValue
     ) {
       return res
         .status(400)
@@ -145,24 +147,35 @@ app.put("/api/atualizar-produto/:productId", async (req, res) => {
         });
     }
 
-    // Remova o prefixo "data:image/png;base64," da imagem
-    const base64WithoutPrefix = imageBase64.replace(
-      /^data:image\/[a-zA-Z+]+;base64,/,
-      ""
-    );
+    let imageUri = null;
 
-    const imageUri = await uploadImageToImgBB(base64WithoutPrefix);
+    // Remova o prefixo "data:image/png;base64," da imagem
+    // Se houver uma imagem, faça o upload e obtenha a URI
+    if (imageBase64) {
+      const base64WithoutPrefix = imageBase64.replace(
+        /^data:image\/[a-zA-Z+]+;base64,/,
+        ""
+      );
+      imageUri = await uploadImageToImgBB(base64WithoutPrefix);
+    }
+
+    /* const imageUri = await uploadImageToImgBB(base64WithoutPrefix); */
 
     const collectionRef = db.collection("Produto");
     const productRef = collectionRef.doc(productId); // Use o ID do documento do Firestore
 
-    await productRef.update({
+    const updateData = {
       nome: productName,
       descricao: productDescription,
       categoria: productCategory,
       valor: productValue,
-      imageUri,
-    });
+    };
+
+    if (imageUri) {
+      updateData.imageUri = imageUri;
+    }
+
+    await productRef.update(updateData);
 
     console.log("Servidor: Produto atualizado com sucesso!");
     return res

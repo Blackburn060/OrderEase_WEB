@@ -93,7 +93,7 @@ function PageProduct() {
   };
 
   const handleProductSelect = (product) => {
-    setSelectedProduct(product);
+    setSelectedProduct({ ...product });
   };
 
   const handleSubmit = async () => {
@@ -203,8 +203,7 @@ function PageProduct() {
       !productName ||
       !productDescription ||
       !productCategory ||
-      !productValue ||
-      !imageBase64
+      !productValue
     ) {
       alert(
         "Por favor, preencha todos os campos do formulário e selecione uma imagem."
@@ -216,9 +215,13 @@ function PageProduct() {
       productName,
       productDescription,
       productValue,
-      imageBase64,
       productCategory,
     };
+
+    // Adicione a imagem ao objeto de dados se estiver presente
+  if (imageBase64) {
+    data.imageBase64 = imageBase64;
+  }
   
     try {
       const response = await fetch(
