@@ -392,6 +392,13 @@ function PageProduct() {
     }
   };
 
+  const confirmDelete = () => {
+    const userConfirmed = window.confirm("Tem certeza que deseja excluir o produto?");
+    if (userConfirmed) {
+      handleDelete();
+    }
+  };
+
   return (
     <div className="page">
       <div className="contentPageProduct">
@@ -477,13 +484,15 @@ function PageProduct() {
               >
                 {isEditMode ? "Atualizar" : "Enviar"}
               </button>
-              <button
-                className="buttonDefaultStyle deleteButton"
-                type="button"
-                onClick={handleDelete}
-              >
-                Excluir
-              </button>
+              {selectedProduct && isEditMode && (
+                <button
+                  className="buttonDefaultStyle deleteButton"
+                  type="button"
+                  onClick={confirmDelete}
+                >
+                  Excluir
+                </button>
+              )}
             </form>
           </div>
           {serverResponse && (
