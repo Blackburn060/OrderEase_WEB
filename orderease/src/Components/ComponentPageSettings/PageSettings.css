@@ -15,8 +15,8 @@
 
 .configurationParameters {
   position: fixed;
-  width: 40%;
-  height: 70%;
+  width: calc(27vh + 27vw);
+  height: calc(23vh + 23vw);
   flex-shrink: 0;
   margin-top: 10vh;
   margin-left: 30%;
@@ -91,21 +91,6 @@
   box-shadow: 5px 5px 10px #000;
   transform: scale(1.01);
 }
-
-/* .configurationParametersContent select {
-  width: 95%;
-  padding: 1.5vh;
-  margin-bottom: 1vh;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  resize: vertical;
-  font-size: 1.7vh;
-}
-
-.configurationParametersContent select:focus {
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  box-shadow: 5px 5px 10px #000;
-} */
 
 .configurationParametersContent input[type="color"] {
   width: 6%;

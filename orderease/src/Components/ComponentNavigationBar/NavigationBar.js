@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./NavigationBar.css";
-import ImageLogo from "../../assets/Images/LogoExemplo.png";
+import UserLogo from "../../assets/Images/IconeUserLoginPage.png";
 import IconSearch from "../../assets/Images/IconeLupaBarraNavegacao.png";
 import MenuIcon from "../../assets/Images/IconeHamburguerMenuLateral.png";
 import CloseIcon from "../../assets/Images/IconeVoltarMenuLateral2.png";
@@ -10,10 +10,16 @@ function NavigationBar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [menuIcon, setMenuIcon] = useState(MenuIcon);
   const [overlayVisible, setOverlayVisible] = useState(false); // Novo estado para a tela de sobreposição
+  const [companyInfo, setCompanyInfo] = useState({
+    name: "",
+    logoUrl: "",
+  });
 
   useEffect(() => {
     // Adicione um event listener para detectar cliques no documento inteiro
     document.addEventListener("click", handleDocumentClick);
+
+    fetchCompanyInfo();
 
     return () => {
       // Remova o event listener ao desmontar o componente
@@ -34,6 +40,23 @@ function NavigationBar() {
       setSidebarOpen(false);
       setMenuIcon(MenuIcon);
       setOverlayVisible(false); // Esconder a tela de sobreposição
+    }
+  };
+
+  const fetchCompanyInfo = async () => {
+    try {
+      const response = await fetch("https://orderease-api.onrender.com/api/obter-configuracoes");
+      if (response.ok) {
+        const data = await response.json();
+        setCompanyInfo({
+          name: data.companyName,
+          logoUrl: data.companyLogo,
+        });
+      } else {
+        console.error("Erro ao obter informações da empresa:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Erro durante a solicitação para o servidor:", error);
     }
   };
 
@@ -90,9 +113,9 @@ function NavigationBar() {
       <div className="navbar">
         <div className="navbar-left">
           <Link to="/home">
-            <img src={ImageLogo} alt="Logo da Empresa" className="logo" />
+          <img src={companyInfo.logoUrl} alt="Logo da Empresa" className="logo" />
           </Link>
-          <span>Nome da Empresa</span>
+          <span>{companyInfo.name}</span>
         </div>
         <div className="navbar-center">
           <img
@@ -105,7 +128,7 @@ function NavigationBar() {
         <div className="navbar-right">
           <span>Nome do Usuário</span>
           <Link to="/PageLogin">
-            <img src={ImageLogo} alt="Logo do Usuário" className="user-logo" />
+            <img src={UserLogo} alt="Logo do Usuário" className="user-logo" />
           </Link>
         </div>
       </div>
