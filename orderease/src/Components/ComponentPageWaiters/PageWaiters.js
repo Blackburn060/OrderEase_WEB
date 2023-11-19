@@ -4,8 +4,8 @@ import "./PageWaiters.css";
 function PageWaiters() {
   return (
     <div className="page">
-      <div className="content">
-        <div className="WaitersTitle-container">
+      <div className="contentPageWaiters">
+        <div className="waitersTitle-container">
           <h1>Garçons</h1>
         </div>
         <div className="GarconsCadastrados">

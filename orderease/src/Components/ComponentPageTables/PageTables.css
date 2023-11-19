@@ -1,26 +1,27 @@
-.contentTable {
+.contentPageTable {
   display: flex;
 }
 
-.titleContainerTable h1 {
-  position: fixed;
+.TableTitle-container h1 {
+  align-items: flex-start;
+  padding-left: calc(5vh + 5vw);
+  text-align: left;
   color: #000;
-  text-align: center;
-  font-size: 35px;
+  font-size: calc(2vh + 1vw);
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  margin-left: 390px;
 }
 
 .ButtonNewTable {
   position: fixed;
-  margin-top: 25px;
-  margin-left: 65%;
+  margin-top: calc(1vh + 1vw);
+  margin-left: 67%;
 }
 
 .ButtonNewTable button {
-  font-size: 28px;
+  font-size: calc(1vh + 1vw);
+  width: 5em;
 }
 
 .DetailedTableData {
