@@ -497,7 +497,7 @@ function PageProduct() {
           </div>
           {serverResponse && (
             <div
-              className={`server-response ${
+              className={`ProductServer-response ${
                 serverResponse.includes("sucesso") ? "success" : "error"
               } ${showProgressBar ? "show" : ""}`}
             >
@@ -506,10 +506,10 @@ function PageProduct() {
           )}
           {showProgressBar && (
             <div
-              className={`progress-container ${showProgressBar ? "show" : ""}`}
+              className={`ProductProgress-container ${showProgressBar ? "show" : ""}`}
             >
               <div
-                className="progress-bar"
+                className="ProductProgress-bar"
                 style={{ width: progressWidth }}
               ></div>
             </div>

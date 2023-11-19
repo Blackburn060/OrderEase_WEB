@@ -39,7 +39,7 @@
 
 .ProductsRegisteredTittle {
   width: 100%;
-  height: 6vh;
+  height: calc(1.5vh + 1.5vw);
   flex-shrink: 0;
   border-radius: 10px 10px 0 0;
   border-bottom: 2px solid #000;
@@ -59,7 +59,7 @@
 
 .ProductsRegisteredDataContent {
   position: fixed;
-  margin-top: 6vh;
+  margin-top: calc(1.5vh + 1.5vw);
 }
 
 .ProductsRegisteredDataContent ul {
@@ -112,7 +112,7 @@
 
 .DetailedProductDataTittle {
   width: 100%;
-  height: 6vh;
+  height: calc(1.5vh + 1.5vw);
   flex-shrink: 0;
   border-radius: 10px 10px 0 0;
   border-bottom: 2px solid #000;
@@ -132,7 +132,7 @@
 
 .DetailedProductDataContent {
   position: fixed;
-  margin-top: 8vh;
+  margin-top: calc(2vh + 2vw);
   width: 38%;
 }
 
@@ -201,7 +201,7 @@
   margin-left: 2vw;
 }
 
-.server-response {
+.ProductServer-response {
   position: absolute;
   top: 64vh;
   width: 70%;
@@ -212,17 +212,17 @@
   animation: fadeInOut 3s ease forwards;
 }
 
-.server-response.success {
+.ProductServer-response.success {
   background-color: #4caf50;
   color: white;
 }
 
-.server-response.error {
+.ProductServer-response.error {
   background-color: #f44336;
   color: white;
 }
 
-.progress-container {
+.ProductProgress-container {
   overflow: hidden;
   position: absolute;
   top: 68.6vh;
@@ -232,7 +232,7 @@
   animation: fadeInOut 3s ease forwards;
 }
 
-.progress-bar {
+.ProductProgress-bar {
   height: 7px;
   background-color: #405cbb;
   transition: width 0.1s linear;
