@@ -1,17 +1,46 @@
+import React, { useState, useEffect } from "react";
 import "./PageHome.css";
 import ImageUserLogo from "../../assets/Images/LogoExemplo.png";
-import ImageCenterPage from "../../assets/Images/ImagemPaginaLogin.jpg"
 
 function PageHome() {
+  const [companyInfo, setCompanyInfo] = useState({
+    homePageImageUrl: "",
+  });
+
+  useEffect(() => {
+    fetchCompanyInfo();
+  }, []);
+
+  const fetchCompanyInfo = async () => {
+    try {
+      const response = await fetch(
+        "https://orderease-api.onrender.com/api/obter-configuracoes"
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setCompanyInfo({
+          homePageImageUrl: data.homePageImage,
+        });
+      } else {
+        console.error(
+          "Erro ao obter informações da empresa:",
+          response.statusText
+        );
+      }
+    } catch (error) {
+      console.error("Erro durante a solicitação para o servidor:", error);
+    }
+  };
+
   return (
     <div className="page">
       <div className="contentPageHome">
         <div className="PageHomeTitle-container">
-          <img src={ImageUserLogo} alt="User logo home page"/> 
+          <img src={ImageUserLogo} alt="User logo home page" />
           <h1>Olá, Nome Usuário</h1>
         </div>
         <div className="PageHomeImageCenter">
-          <img src={ImageCenterPage} alt="Center Page"/>
+          <img src={companyInfo.homePageImageUrl} alt="Center Page" />
         </div>
         <div className="PageHomeWhereItStopped">
           <h1>Continue de onde parou</h1>

@@ -45,7 +45,9 @@ function NavigationBar() {
 
   const fetchCompanyInfo = async () => {
     try {
-      const response = await fetch("https://orderease-api.onrender.com/api/obter-configuracoes");
+      const response = await fetch(
+        "https://orderease-api.onrender.com/api/obter-configuracoes"
+      );
       if (response.ok) {
         const data = await response.json();
         setCompanyInfo({
@@ -53,7 +55,10 @@ function NavigationBar() {
           logoUrl: data.companyLogo,
         });
       } else {
-        console.error("Erro ao obter informações da empresa:", response.statusText);
+        console.error(
+          "Erro ao obter informações da empresa:",
+          response.statusText
+        );
       }
     } catch (error) {
       console.error("Erro durante a solicitação para o servidor:", error);
@@ -113,7 +118,11 @@ function NavigationBar() {
       <div className="navbar">
         <div className="navbar-left">
           <Link to="/home">
-          <img src={companyInfo.logoUrl} alt="Logo da Empresa" className="logo" />
+            <img
+              src={companyInfo.logoUrl}
+              alt="Logo da Empresa"
+              className="logo"
+            />
           </Link>
           <span>{companyInfo.name}</span>
         </div>
