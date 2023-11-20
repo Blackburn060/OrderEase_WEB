@@ -15,6 +15,7 @@ function PageProduct() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isEditMode, setIsEditMode] = useState(false);
   const [fetchError, setFetchError] = useState(null);
+  const [selectedProductId, setSelectedProductId] = useState(null);
 
   useEffect(() => {
     fetchProducts();
@@ -76,6 +77,7 @@ function PageProduct() {
     setImageBase64("");
     setFormKey((prevKey) => prevKey + 1); // Incrementa a chave para forçar a remontagem do componente
     setIsEditMode(false);
+    setSelectedProductId(null);
   };
 
   const fetchProducts = async () => {
@@ -98,6 +100,7 @@ function PageProduct() {
   };
 
   const handleProductSelect = (product) => {
+    setSelectedProductId(product.id);
     setSelectedProduct({ ...product });
   };
 
@@ -106,8 +109,7 @@ function PageProduct() {
       !productName ||
       !productDescription ||
       !productCategory ||
-      !productValue ||
-      !imageBase64
+      !productValue
     ) {
       alert(
         "Por favor, preencha todos os campos do formulário e selecione uma imagem."
@@ -121,10 +123,13 @@ function PageProduct() {
       productName,
       productDescription,
       productValue,
-      imageBase64,
       productCategory,
       productStatus,
     };
+
+    if (imageBase64) {
+      data.imageBase64 = imageBase64;
+    }
 
     try {
       const response = await fetch(
@@ -393,7 +398,9 @@ function PageProduct() {
   };
 
   const confirmDelete = () => {
-    const userConfirmed = window.confirm("Tem certeza que deseja excluir o produto?");
+    const userConfirmed = window.confirm(
+      "Tem certeza que deseja excluir o produto?"
+    );
     if (userConfirmed) {
       handleDelete();
     }
@@ -420,7 +427,12 @@ function PageProduct() {
             ) : (
               <ul>
                 {productList.map((product) => (
-                  <li key={product.id}>
+                  <li
+                    key={product.id}
+                    className={
+                      selectedProductId === product.id ? "selected" : ""
+                    }
+                  >
                     <button onClick={() => handleProductSelect(product)}>
                       {product.nome}
                     </button>
@@ -458,9 +470,17 @@ function PageProduct() {
                 onChange={handleProductCategoryChange}
               >
                 <option value="">Selecione uma categoria</option>
-                <option value="alcoolicos">Alcoólicos</option>
-                <option value="cremes">Cremes</option>
-                <option value="sucos">Sucos</option>
+                <option value="Alcoólicos">Alcoólicos</option>
+                <option value="Cremes">Cremes</option>
+                <option value="Sucos">Sucos</option>
+                <option value="Coqueteis">Coquetéis</option>
+                <option value="Não Alcoólicos">Não Alcoólicos</option>
+                <option value="Entradas">Entradas</option>
+                <option value="Petiscos">Petiscos</option>
+                <option value="Risotos">Risotos</option>
+                <option value="Massas">Massas</option>
+                <option value="Sobremesas">Sobremesas</option>
+                <option value="Batidas">Batidas</option>
               </select>
 
               <label htmlFor="productValue">Valor do Produto:</label>
@@ -506,7 +526,9 @@ function PageProduct() {
           )}
           {showProgressBar && (
             <div
-              className={`ProductProgress-container ${showProgressBar ? "show" : ""}`}
+              className={`ProductProgress-container ${
+                showProgressBar ? "show" : ""
+              }`}
             >
               <div
                 className="ProductProgress-bar"

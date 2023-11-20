@@ -63,11 +63,13 @@
 }
 
 .ProductsRegisteredDataContent ul {
-  font-size: 2.3vh;
+  font-size: calc(0.7vh + 0.7vw);
   list-style-type: decimal;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  max-height: calc(19vh + 19vw); /* Defina a altura máxima desejada */
+  overflow-y: auto;
 }
 
 .ProductsRegisteredDataContent ul li {
@@ -78,8 +80,12 @@
   background: none;
   border: none;
   border-radius: none;
-  font-size: 2.2vh;
+  font-size: calc(0.7vh + 0.7vw);
   cursor: pointer;
+}
+
+.ProductsRegisteredDataContent ul li.selected {
+  background-color: #e0e0e0; /* Cor de fundo para o item selecionado */
 }
 
 .FetchErrorMessage {
