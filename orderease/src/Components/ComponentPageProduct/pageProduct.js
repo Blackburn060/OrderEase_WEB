@@ -489,6 +489,10 @@ function PageProduct() {
                 id="productValue"
                 value={productValue}
                 onChange={handleProductValueChange}
+                onInput={(e) => {
+                  // Remove caracteres não numéricos
+                  e.target.value = e.target.value.replace(/[^0-9,.]/g, "");
+                }}
               />
 
               <label htmlFor="productImage">Imagem do Produto:</label>
