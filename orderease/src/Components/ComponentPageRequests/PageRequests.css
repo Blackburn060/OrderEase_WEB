@@ -1,103 +1,81 @@
 .contentPageRequests {
-    display: flex;
-  }
-  
-  .RequestsTitle-container h1 {
-    align-items: flex-start;
-    padding-left: calc(5vh + 5vw);
-    text-align: left;
-    color: #000;
-    font-size: calc(2vh + 1vw);
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    
-  }
-  
- 
+  display: flex;
+}
 
-  .RequestsRegistered {
-    width:calc(33vh + 33vw);
-    
+.RequestsTitle-container h1 {
+  align-items: flex-start;
+  padding-left: calc(5vh + 5vw);
+  text-align: left;
+  color: #000;
+  font-size: calc(2vh + 1vw);
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
 
-    flex-direction: column;
-    margin-top: calc(4vh + 4vw);
-    margin-left:calc(7.5vh + 7.5vw) ;
-    font-size: calc(1.7vh + 0.7vw);
-    height: calc(11vh + 11vw);
+.RequestsRegistered {
+  width: calc(33vh + 33vw);
+  flex-direction: column;
+  margin-top: calc(3vh + 3vw);
+  margin-left: calc(7.5vh + 7.5vw);
+  font-size: calc(1.7vh + 0.7vw);
+  height: calc(25vh + 25vw);
+  max-height: calc(25vh + 25vw);
+  overflow-y: auto;
+}
 
+.RequestInfo {
+  width: 100%;
+  height: calc(6vh + 6vw);
+ /*  max-height: calc(6vh + 6vw); */
+  flex-shrink: 0;
+  margin-top: 20px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  
+  /*  overflow-y: auto; */
+}
 
-  }
-  
-  .RequestInfo {
-   /*  position: fixed; */
-    width: 100%;
-/*     height: 70%;
- */    flex-shrink: 0;
-    margin-top: 0;
-    border-radius: 10px;
-    background: #fff;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
-    display: flex;
-    overflow-y: auto;
-  }
-  
-  .RequestInfoTittle {
-    width: 100%;
-    
-    height: calc(1.5vh + 1.5vw);
-    flex-shrink: 0;
-    border-radius: 10px 10px 0 0;
-    border-bottom: 2px solid #000;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    z-index: 1;
-    
-  }
-  
-  .RequestInfoTittle h2 { /* titulo das divs  */
-    color: #040303;
-    font-size: 1.3vw;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
-  
-  .RequestInfoDataContent { /* define o tamanho da div  */
-    /* position: fixed; */
-    width: calc(6vh + 6vw);
-    margin-top: calc(3vh + 3vw);
-    display: flex;  /* Adicione esta linha para tornar a div um contêiner flexível */
-    justify-content: flex-start;  /* Alinhe os itens à esquerda */
-    align-items: flex-start;  /* Alinhe os itens à esquerda */
-  }
-  
-  .RequestInfoDataContent ul {
-    font-size: calc(0.7vh + 0.7vw); /* tamanho das letras da div */
-    list-style-type: decimal;
-     display: flex;
-     flex-direction: column;
-     justify-content: space-between;
-      align-items: flex-start; /* Alinhar à esquerda */
-    max-height: calc(19vh + 19vw); /* Defina a altura máxima desejada */
-     overflow-y: auto;
-   }
-  
-  .RequestInfoDataContent ul li {
-    margin-bottom: 10px;
-  }
-  
-  .RequestInfoDataContent button {
-    background: none;
-    border: none;
-    border-radius: none;
-    font-size: calc(0.7vh + 0.7vw);
-    cursor: pointer;
-  }
-  
-  .RequestInfoDataContent ul li.selected {
-    background-color: #bb4444; /* Cor de fundo para o item selecionado */
-  }
-  
-  
+.RequestInfoTittle {
+  width: 100%;
+  height: calc(1.5vh + 1.5vw);
+  flex-shrink: 0;
+  border-radius: 10px 10px 0 0;
+  border-bottom: 2px solid #000;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  z-index: 1;
+}
+
+.RequestInfoTittle h2 {
+  /* titulo das divs  */
+  color: #040303;
+  font-size: calc(1vh + 1vw);
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.RequestInfoDataContent {
+  /* define o tamanho da div  */
+  position: relative;
+  margin-left: 0;
+  margin-top: calc(1.5vh + 1.5vw);
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.RequestInfoDataContent ul {
+  font-size: calc(0.9vh + 0.9vw); /* tamanho das letras da div */
+  list-style-type: none;
+}
+
+.RequestInfoDataContent ul li {
+  display: inline-block;
+  margin-bottom: 10px;
+  margin-right: 20px;
+}

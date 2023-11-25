@@ -54,29 +54,26 @@ function PageRequests() {
         {fetchError ? (
           <div className="FetchErrorMessage">{fetchError}</div>
         ) : (
-          <div className="RequestsRegisteredContainer">
-            <div className="RequestsRegistered">
-              {pedidos.map((pedido) => (
-                <div className="RequestInfo" key={pedido.id}>
-                  <div className="RequestInfoTittle">
-                    <h2>Mesa: {pedido.mesa}</h2>
-                  </div>
-                  <div className="RequestInfoDataContent">
-                    <ul className="RequestInfoDataList">
-                      <li>Mesa: {pedido.mesa}</li>
-                      <li>
-                        Quantidade Total do Pedido:{" "}
-                        {calcularQuantidadeTotal(pedido.itens)}
-                      </li>
-                      <li>
-                        Valor Total do Pedido:{" "}
-                        {calcularTotalPedido(pedido.itens)}
-                      </li>
-                    </ul>
-                  </div>
+          <div className="RequestsRegistered">
+            {pedidos.map((pedido) => (
+              <div className="RequestInfo" key={pedido.id}>
+                <div className="RequestInfoTittle">
+                  <h2>Dados do Pedido - {pedido.numeroPedido}</h2>
                 </div>
-              ))}
-            </div>
+                <div className="RequestInfoDataContent">
+                  <ul className="RequestInfoDataList">
+                    <li>Mesa: {pedido.mesa}</li>
+                    <li>
+                      Quantidade Total do Pedido:{" "}
+                      {calcularQuantidadeTotal(pedido.itens)}
+                    </li>
+                    <li>
+                      Valor Total do Pedido: {calcularTotalPedido(pedido.itens)}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            ))}
           </div>
         )}
       </div>
