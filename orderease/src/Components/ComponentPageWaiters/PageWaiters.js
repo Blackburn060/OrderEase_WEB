@@ -3,10 +3,10 @@ import "./PageWaiters.css";
 
 function PageWaiters() {
   const [waiterName, setWaiterName] = useState("");
-  const [waiterDescription, setWaiterDescription] = useState("");
-  const [waiterCategory, setWaiterCategory] = useState("");
-  const [waiterValue, setWaiterValue] = useState("");
-  const [imageBase64, setImageBase64] = useState("");
+  const [waiterSurname, setWaiterSurname] = useState("");
+  const [waiterEmail, setWaiterEmail] = useState("");
+  const [waiterPassword, setWaiterPassword] = useState("");
+  const [waiterSituation, setWaiterSituation] = useState("");
   const [serverResponse, setServerResponse] = useState(null);
   const [showProgressBar, setShowProgressBar] = useState(false);
   const [progressWidth, setProgressWidth] = useState("0%");
@@ -30,9 +30,10 @@ function PageWaiters() {
   useEffect(() => {
     if (selectedWaiter) {
       setWaiterName(selectedWaiter.nome);
-      setWaiterDescription(selectedWaiter.descricao);
-      setWaiterCategory(selectedWaiter.categoria);
-      setWaiterValue(selectedWaiter.valor);
+      setWaiterSurname(selectedWaiter.sobrenome);
+      setWaiterEmail(selectedWaiter.email);
+      setWaiterPassword(selectedWaiter.senha);
+      setWaiterSituation(selectedWaiter.situacao);
       setIsEditMode(true);
     }
   }, [selectedWaiter]);
@@ -41,39 +42,28 @@ function PageWaiters() {
     setWaiterName(e.target.value);
   };
 
-  const handleWaiterDescriptionChange = (e) => {
-    setWaiterDescription(e.target.value);
+  const handlewaiterSurnameChange = (e) => {
+    setWaiterSurname(e.target.value);
   };
 
-  const handleWaiterCategoryChange = (e) => {
-    setWaiterCategory(e.target.value);
+  const handlewaiterEmailChange = (e) => {
+    setWaiterEmail(e.target.value);
   };
 
-  const handleWaiterValueChange = (e) => {
-    setWaiterValue(e.target.value);
+  const handleWaiterPasswordChange = (e) => {
+    setWaiterPassword(e.target.value);
   };
 
-  const handleImageChange = (e) => {
-    const selectedImage = e.target.files[0];
-    if (selectedImage) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const base64WithoutPrefix = event.target.result.replace(
-          /^data:image\/[a-zA-Z+]+;base64,/,
-          ""
-        );
-        setImageBase64(base64WithoutPrefix);
-      };
-      reader.readAsDataURL(selectedImage);
-    }
+  const handleWaiterSituationChange = (e) => {
+    setWaiterSituation(e.target.value);
   };
 
   const resetForm = () => {
     setWaiterName("");
-    setWaiterDescription("");
-    setWaiterCategory("");
-    setWaiterValue("");
-    setImageBase64("");
+    setWaiterSurname("");
+    setWaiterEmail("");
+    setWaiterPassword("");
+    setWaiterSituation("");
     setFormKey((prevKey) => prevKey + 1);
     setIsEditMode(false);
     setSelectedWaiterId(null);
@@ -82,7 +72,7 @@ function PageWaiters() {
   const fetchWaiters = async () => {
     try {
       const response = await fetch(
-        "https://orderease-api.onrender.com/api/listar-produtos?status=Ativo"
+        "https://orderease-api.onrender.com/api/listar-garcons?status=Ativo"
       );
       if (response.ok) {
         const waitersData = await response.json();
@@ -106,33 +96,27 @@ function PageWaiters() {
   const handleSubmit = async () => {
     if (
       !waiterName ||
-      !waiterDescription ||
-      !waiterCategory ||
-      !waiterValue
+      !waiterSurname ||
+      !waiterEmail ||
+      !waiterPassword ||
+      !waiterSituation
     ) {
-      alert(
-        "Por favor, preencha todos os campos do formulário e selecione uma imagem."
-      );
+      alert("Por favor, preencha todos os campos do formulário.");
       return;
     }
 
-    const waiterStatus = "Ativo";
-
     const data = {
       waiterName,
-      waiterDescription,
-      waiterValue,
-      waiterCategory,
-      waiterStatus,
+      waiterSurname,
+      waiterEmail,
+      waiterSituation,
+      waiterPassword,
+      waiterStatus: "Ativo",
     };
-
-    if (imageBase64) {
-      data.imageBase64 = imageBase64;
-    }
 
     try {
       const response = await fetch(
-        "https://orderease-api.onrender.com/api/adicionar-produto",
+        "https://orderease-api.onrender.com/api/adicionar-garcom",
         {
           method: "POST",
           headers: {
@@ -213,30 +197,26 @@ function PageWaiters() {
   const handleUpdate = async () => {
     if (
       !waiterName ||
-      !waiterDescription ||
-      !waiterCategory ||
-      !waiterValue
+      !waiterSurname ||
+      !waiterEmail ||
+      !waiterPassword ||
+      !waiterSituation
     ) {
-      alert(
-        "Por favor, preencha todos os campos do formulário e selecione uma imagem."
-      );
+      alert("Por favor, preencha todos os campos do formulário.");
       return;
     }
 
     const data = {
       waiterName,
-      waiterDescription,
-      waiterValue,
-      waiterCategory,
+      waiterSurname,
+      waiterEmail,
+      waiterSituation,
+      waiterPassword,
     };
-
-    if (imageBase64) {
-      data.imageBase64 = imageBase64;
-    }
 
     try {
       const response = await fetch(
-        `https://orderease-api.onrender.com/api/atualizar-produto/${selectedWaiter.id}`,
+        `https://orderease-api.onrender.com/api/atualizar-garcom/${selectedWaiter.id}`,
         {
           method: "PUT",
           headers: {
@@ -321,7 +301,7 @@ function PageWaiters() {
 
     try {
       const response = await fetch(
-        `https://orderease-api.onrender.com/api/excluir-produto/${selectedWaiter.id}`,
+        `https://orderease-api.onrender.com/api/excluir-garcom/${selectedWaiter.id}`,
         {
           method: "DELETE",
         }
@@ -406,20 +386,20 @@ function PageWaiters() {
 
   return (
     <div className="page">
-      <div className="contentPageProduct">
-        <div className="ProductTitle-container">
+      <div className="contentPageWaiter">
+        <div className="WaiterTitle-container">
           <h1>Garçons</h1>
         </div>
-        <div className="ButtonNewProduct">
+        <div className="ButtonNewWaiter">
           <button className="buttonDefaultStyle" onClick={resetForm}>
             {isEditMode ? "Cancelar" : "Novo"}
           </button>
         </div>
-        <div className="ProductsRegistered">
-          <div className="ProductsRegisteredTittle">
+        <div className="WaitersRegistered">
+          <div className="WaitersRegisteredTittle">
             <h2>Garçons Cadastrados</h2>
           </div>
-          <div className="ProductsRegisteredDataContent">
+          <div className="WaitersRegisteredDataContent">
             {fetchError ? (
               <div className="FetchErrorMessage">{fetchError}</div>
             ) : (
@@ -427,12 +407,10 @@ function PageWaiters() {
                 {waiterList.map((waiter) => (
                   <li
                     key={waiter.id}
-                    className={
-                      selectedWaiterId === waiter.id ? "selected" : ""
-                    }
+                    className={selectedWaiterId === waiter.id ? "selected" : ""}
                   >
                     <button onClick={() => handleWaiterSelect(waiter)}>
-                      {waiter.nome}
+                    {`${waiter.nome} ${waiter.sobrenome}`}
                     </button>
                   </li>
                 ))}
@@ -440,13 +418,13 @@ function PageWaiters() {
             )}
           </div>
         </div>
-        <div className="DetailedProductData" key={formKey}>
-          <div className="DetailedProductDataTittle">
+        <div className="DetailedWaiterData" key={formKey}>
+          <div className="DetailedWaiterDataTittle">
             <h2>Dados do Garçom</h2>
           </div>
-          <div className="DetailedProductDataContent">
+          <div className="DetailedWaiterDataContent">
             <form>
-            <label htmlFor="waiterName">Nome do Garçom:</label>
+              <label htmlFor="waiterName">Nome:</label>
               <input
                 type="text"
                 id="waiterName"
@@ -454,42 +432,43 @@ function PageWaiters() {
                 onChange={handleWaiterNameChange}
               />
 
-              <label htmlFor="waiterDescription">Descrição:</label>
-              <textarea
-                id="waiterDescription"
-                value={waiterDescription}
-                onChange={handleWaiterDescriptionChange}
-              />
-
-              <label htmlFor="waiterCategory">Categoria do Garçom:</label>
-              <select
-                id="waiterCategory"
-                value={waiterCategory}
-                onChange={handleWaiterCategoryChange}
-              >
-                <option value="">Selecione uma categoria</option>
-                <option value="Iniciante">Iniciante</option>
-                <option value="Intermediário">Intermediário</option>
-                <option value="Avançado">Avançado</option>
-              </select>
-
-              <label htmlFor="waiterValue">Valor do Garçom:</label>
+              <label htmlFor="waiterSurname">Sobrenome:</label>
               <input
                 type="text"
-                id="waiterValue"
-                value={waiterValue}
-                onChange={handleWaiterValueChange}
-                onInput={(e) => {
-                  e.target.value = e.target.value.replace(/[^0-9,.]/g, "");
-                }}
+                id="waiterSurname"
+                value={waiterSurname}
+                onChange={handlewaiterSurnameChange}
               />
 
-              <label htmlFor="waiterImage">Imagem do Garçom:</label>
+              <label htmlFor="waiterEmail">E-mail:</label>
               <input
-                type="file"
-                id="waiterImage"
-                onChange={handleImageChange}
+                type="email"
+                id="waiterEmail"
+                value={waiterEmail}
+                onChange={handlewaiterEmailChange}
               />
+
+              <label htmlFor="waiterPassword">Senha:</label>
+              <input
+                type="password"
+                id="waiterPassword"
+                value={waiterPassword}
+                onChange={handleWaiterPasswordChange}
+              />
+
+              <label htmlFor="waiterSituation">Situação</label>
+              <select
+                id="waiterSituation"
+                value={waiterSituation}
+                onChange={handleWaiterSituationChange}
+              >
+                <option value="">Situação do Garçom</option>
+                <option value="Contratado">Contratado</option>
+                <option value="Demitido">Demitido</option>
+                <option value="Ferias">Férias</option>
+                <option value="Afastado">Afastado</option>
+              </select>
+
               <button
                 className="buttonDefaultStyle"
                 type="button"
@@ -510,7 +489,7 @@ function PageWaiters() {
           </div>
           {serverResponse && (
             <div
-              className={`ProductServer-response ${
+              className={`WaiterServer-response ${
                 serverResponse.includes("sucesso") ? "success" : "error"
               } ${showProgressBar ? "show" : ""}`}
             >
@@ -519,12 +498,12 @@ function PageWaiters() {
           )}
           {showProgressBar && (
             <div
-              className={`ProductProgress-container ${
+              className={`WaiterProgress-container ${
                 showProgressBar ? "show" : ""
               }`}
             >
               <div
-                className="ProductProgress-bar"
+                className="WaiterProgress-bar"
                 style={{ width: progressWidth }}
               ></div>
             </div>
