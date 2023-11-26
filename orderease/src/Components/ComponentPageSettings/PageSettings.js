@@ -40,15 +40,15 @@ function PageSettings() {
 
     if (companyLogo) {
       data.companyLogo = companyLogo;
-    };
+    }
 
     if (loginPageImage) {
       data.loginPageImage = loginPageImage;
-    };
+    }
 
     if (homePageImage) {
       data.homePageImage = homePageImage;
-    };
+    }
 
     try {
       const response = await fetch(
@@ -81,6 +81,9 @@ function PageSettings() {
           setShowProgressBar(false);
           clearInterval(intervalId);
           setProgressWidth("0%");
+
+          // Recarrega a página após o sucesso
+          window.location.reload();
         }, 4000);
       } else {
         console.error("Erro ao salvar configurações:", response.statusText);
@@ -134,9 +137,6 @@ function PageSettings() {
       if (response.ok) {
         const data = await response.json();
         setCompanyName(data.companyName);
-        setCompanyLogo(data.companyLogo);
-        setLoginPageImage(data.loginPageImage);
-        setHomePageImage(data.homePageImage);
         setPrimaryColor(data.primaryColor);
         setSecondaryColor(data.secondaryColor);
       } else {
@@ -228,7 +228,9 @@ function PageSettings() {
           )}
           {showProgressBar && (
             <div
-              className={`SettingsProgress-container ${showProgressBar ? "show" : ""}`}
+              className={`SettingsProgress-container ${
+                showProgressBar ? "show" : ""
+              }`}
             >
               <div
                 className="SettingsProgress-bar"

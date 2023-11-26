@@ -15,6 +15,10 @@
   background-color: #f1f1f1; /* Cor do fundo da barra de rolagem */
 }
 
+:root {
+  --cor-primaria: #203f97;
+  --cor-secundaria: #203f97;
+}
 
 body {
   margin: 0;
@@ -26,7 +30,7 @@ body {
   flex-shrink: 0;
   border-radius: 16px;
   border: none;
-  background: #203f97;
+  background: var(--cor-secundaria);
   color: #fff;
   text-align: center;
   font-style: normal;
@@ -38,12 +42,10 @@ body {
 }
 
 .buttonDefaultStyle:hover {
-  background-color: #2a8bcc;
   box-shadow: 5px 5px 10px #000;
   transform: scale(1.1);
 }
 
 .buttonDefaultStyle:active {
-  background-color: #2a8bcc;
   transform: scale(1);
 }

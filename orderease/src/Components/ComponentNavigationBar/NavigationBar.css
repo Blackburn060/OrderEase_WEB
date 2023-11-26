@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 5px;
-  background-color: #203f97;
+  background-color: var(--cor-primaria);
   color: #fff;
 }
 
@@ -78,7 +78,7 @@ input {
 
 /* Menu lateral */
 .sidebar {
-  background-color: #203f97;
+  background-color: var(--cor-primaria);
   color: white;
   width: 250px;
   height: 100%;
@@ -160,7 +160,7 @@ input {
 
 /* Rodapé */
 .footer {
-  background-color: #203f97;
+  background-color: var(--cor-primaria);
   color: white;
   text-align: center;
   padding-top: 0.5vh;
@@ -191,7 +191,7 @@ input {
   }
 
   .sidebar {
-    background-color: #203f97;
+    background-color: var(--cor-primaria);
     color: white;
     width: 250px;
     height: 100%;

@@ -1,10 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+fetch("https://orderease-api.onrender.com/api/obter-configuracoes")
+  .then((response) => response.json())
+  .then((data) => {
+    // Aqui você pode acessar o valor de primaryColor do objeto retornado pela API
+    const primaryColor = data.primaryColor;
+    const secondaryColor = data.secondaryColor;
+
+    // Em seguida, você pode aplicar esse valor ao CSS
+    document.documentElement.style.setProperty("--cor-primaria", primaryColor);
+    document.documentElement.style.setProperty(
+      "--cor-secundaria",
+      secondaryColor
+    );
+  })
+  .catch((error) =>
+    console.error("Erro ao obter configurações da API:", error)
+  );
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />
