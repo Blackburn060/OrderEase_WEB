@@ -1,0 +1,98 @@
+.contentPageTable {
+  display: flex;
+}
+
+.TableTitle-container h1 {
+  align-items: flex-start;
+  padding-left: calc(5vh + 5vw);
+  text-align: left;
+  color: #000;
+  font-size: calc(2vh + 1vw);
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.ButtonNewTable {
+  position: fixed;
+  margin-top: calc(1vh + 1vw);
+  margin-left: 57%;
+}
+
+.ButtonNewTable button {
+  font-size: calc(1vh + 1vw);
+  width: calc(5vh + 5vw);
+}
+
+.DetailedTableData {
+  position: absolute;
+  width: calc(20vh + 20vw);
+  height: calc(25vh + 25vw);
+  flex-shrink: 0;
+  margin-top: calc(3vh + 3vw);
+  margin-left: 35%;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background: #fff;
+  box-shadow: 10px 0px 10px 0px rgba(0, 0, 0, 0.25);
+  justify-content: center;
+  display: flex;
+}
+
+.DetailedTableDataTittle {
+  width: 100%;
+  height: calc(1.5vh + 1.5vw);
+  flex-shrink: 0;
+  border-radius: 10px 10px 0 0;
+  border-bottom: 2px solid #000;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  z-index: 1;
+}
+
+.DetailedTableDataTittle h2 {
+  color: #000;
+  font-size: 1.3vw;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.DetailedTableDataContent {
+  position: absolute;
+  margin-top: calc(2.2vh + 2.2vw);
+  width: 90%;
+  padding: 3px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.DetailedTableDataContent label {
+  display: block;
+  margin-bottom: 5px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.DetailedTableDataContent input {
+  width: 95%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  resize: vertical;
+}
+
+
+.DetailedTableDataContent input:focus, .DetailedTableDataContent textarea:focus {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 5px 5px 10px #000;
+  transform: scale(1.01);
+}
+
+.DetailedTableDataContent button {
+  font-size: 26px;
+}

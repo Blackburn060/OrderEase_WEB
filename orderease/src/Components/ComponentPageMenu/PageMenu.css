@@ -1,0 +1,75 @@
+.contentPageMenu {
+    display: flex;
+  }
+  
+  .MenuTitle-container h1 {
+    align-items: flex-start;
+    padding-left: calc(5vh + 5vw);
+    text-align: left;
+    color: #000;
+    font-size: calc(2vh + 1vw);
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  
+  .MenuItems {
+    width: 100%;
+    margin-top: calc(1vh + 1vw);
+  }
+  
+  .MenuItems ul {
+    font-size: calc(0.7vh + 0.7vw);
+    list-style-type: none;
+  }
+  
+  .MenuItems ul li {
+    margin-bottom: 20px;
+  }
+  
+  .MenuItems div {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .MenuItems h3 {
+    color: #000;
+    font-size: calc(1.5vh + 1.5vw);
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  
+  .MenuItems p {
+    color: #555;
+    font-size: calc(1vh + 1vw);
+  }
+  
+  .FetchErrorMessage {
+    margin-left: 2vh;
+    margin-top: 1vh;
+    width: 100%;
+    padding: 1.3vh;
+    border-radius: 10px;
+    z-index: 2;
+    opacity: 0;
+    animation: fadeInOut 3s ease forwards;
+    background-color: #f44336;
+    color: white;
+    text-align: center;
+  }
+  
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
