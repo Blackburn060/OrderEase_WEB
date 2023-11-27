@@ -15,7 +15,7 @@ function PageTables() {
             <h2>Dados das Mesas</h2>
           </div>
           <div className="DetailedTableDataContent">
-            {/* Seu conteúdo aqui */}
+            <p>Mesa: </p>
           </div>
         </div>
       </div>
