@@ -16,8 +16,8 @@
 }
 
 .left-side {
-  width: 30vw;
-  height: 80vh;
+  width: calc(20vh + 20vw);
+  height: calc(25vh + 25vw);
   flex-shrink: 0;
 }
 
@@ -28,10 +28,10 @@
 }
 
 .right-side {
-  width: 30vw;
-  height: 80vh;
+  width: calc(20vh + 20vw);
+  height: calc(25vh + 25vw);
   flex-shrink: 0;
-  background: #002173;
+  background: var(--cor-primaria);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -45,8 +45,8 @@
   border-radius: 12px;
   border: 3px solid #fff;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  width: 20vw;
-  height: 60vh;
+  width: calc(15vh + 15vw);
+  height: calc(20vh + 20vw);
   flex-shrink: 0;
 }
 
@@ -54,24 +54,23 @@
   text-align: center;
   color: #fff;
   text-align: center;
-  font-size: 48px;
+  font-size: calc(2vh + 2vw);
   font-style: normal;
   font-weight: 800;
   line-height: 123%;
-  margin-top: 50px;
+  margin-top: calc(2vh + 2vw);
 }
 
 .form-group {
-  margin-top: 50px;
+  margin-top: calc(2vh + 2vw);
   display: flex;
-  /* flex-direction: column; */
   align-items: center;
 }
 
 .form-group input {
-  width: 190px;
+  width: 12vw;
   border: none;
-  border-bottom: 1px solid #405cbb;
+  border-bottom: 2px solid #4973ff;
   padding: 0 0 0 10px;
   background: transparent;
   color: #fff;
@@ -84,7 +83,7 @@
 }
 
 .form-group input::placeholder {
-  color: #405cbb;
+  color: #4973ff;
   text-align: left;
   font-size: 12px;
   font-style: normal;
@@ -93,14 +92,38 @@
 }
 
 .form-group button {
-  width: 195.993px;
-  height: 44.027px;
+  width: calc(7vh + 7vw);
+  height: calc(1.8vh + 1.8vw);
   flex-shrink: 0;
   background-color: transparent;
   color: #fff;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
   cursor: pointer;
   border-radius: 16px;
   border: 1px solid #c1c1c1;
-  background: #002173;
+  background: var(--cor-primaria);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.form-group button:hover {
+  box-shadow: 5px 5px 10px #000;
+  transform: scale(1.1);
+}
+
+.form-group button:active {
+  transform: scale(1);
+}
+
+.container-right-side .error-message{
+  color: #ff0000;
+  text-align: center;
+  font-size: calc(0.6vh + 0.6vw);
+  font-style: normal;
+  font-weight: 800;
+  line-height: 110%;
 }
