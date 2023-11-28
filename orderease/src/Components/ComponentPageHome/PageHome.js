@@ -20,6 +20,7 @@ function PageHome() {
         const data = await response.json();
         setCompanyInfo({
           homePageImageUrl: data.homePageImage,
+          companyLogo: data.companyLogo,
         });
       } else {
         console.error(
@@ -36,7 +37,7 @@ function PageHome() {
     <div className="page">
       <div className="contentPageHome">
         <div className="PageHomeTitle-container">
-          <img src={ImageUserLogo} alt="User logo home page" />
+          <img src={companyInfo.companyLogo} alt="User logo home page" />
           <h1>Olá, Nome Usuário</h1>
         </div>
         <div className="PageHomeImageCenter">
