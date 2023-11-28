@@ -1,68 +1,36 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import "./PageMenu.css";
 
 function PageMenu() {
-  const [productList, setProductList] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [menuItems, setMenuItems] = useState([]);
   const [fetchError, setFetchError] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedMenuItem, setSelectedMenuItem] = useState(null);
 
-  const fetchCategories = useCallback(async () => {
-    try {
-      const response = await fetch("https://orderease-api.onrender.com/api/listar-produtos?status=Ativo");
-
-      if (response.ok) {
-        const productsData = await response.json();
-        const uniqueCategories = Array.from(new Set(productsData.map((product) => product.categoria)));
-        setCategories(uniqueCategories);
-      } else {
-        console.error("Erro ao buscar categorias:", response.statusText);
-        setFetchError("Erro ao buscar categorias!");
-      }
-    } catch (error) {
-      console.error("Erro ao buscar categorias:", error);
-      setFetchError("Erro ao buscar categorias!");
-    }
+  useEffect(() => {
+    fetchMenuItems();
   }, []);
 
-  const fetchProducts = useCallback(async () => {
+  const fetchMenuItems = async () => {
     try {
-      let apiUrl = "https://orderease-api.onrender.com/api/listar-produtos?status=Ativo";
-
-      if (selectedCategory) {
-        apiUrl += `&categoria=${selectedCategory}`;
-      }
-
-      const response = await fetch(apiUrl);
-
+      const response = await fetch(
+        "https://orderease-api.onrender.com/api/listar-produtos?status=Ativo"
+      );
       if (response.ok) {
-        const productsData = await response.json();
-        setProductList(productsData);
+        const menuData = await response.json();
+        setMenuItems(menuData);
         setFetchError(null);
       } else {
-        console.error("Erro ao buscar produtos:", response.statusText);
-        setFetchError("Erro ao buscar produtos!");
+        console.error("Erro ao buscar itens do menu:", response.statusText);
+        setFetchError("Erro ao buscar itens do menu!");
       }
     } catch (error) {
-      console.error("Erro ao buscar produtos:", error);
-      setFetchError("Erro ao buscar produtos!");
+      console.error("Erro ao buscar itens do menu:", error);
+      setFetchError("Erro ao buscar itens do menu!");
     }
-  }, [selectedCategory]);
-
-  useEffect(() => {
-    fetchCategories();
-  }, [fetchCategories]);
-
-  useEffect(() => {
-    fetchProducts();
-  }, [fetchProducts, selectedCategory]);
-
-  const handleCategorySelect = (category) => {
-    setSelectedCategory(category);
   };
 
-  const handleShowAll = () => {
-    setSelectedCategory(null);
+  const handleMenuItemSelect = (menuItem) => {
+    setSelectedMenuItem(menuItem);
   };
 
   return (
@@ -71,43 +39,47 @@ function PageMenu() {
         <div className="MenuTitle-container">
           <h1>Menu</h1>
         </div>
-        <div className="CategoryButtons">
-          <button onClick={handleShowAll} className={!selectedCategory ? "active" : ""}>
-            Todos
-          </button>
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => handleCategorySelect(category)}
-              className={selectedCategory === category ? "active" : ""}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-      </div>
-      <div className="contentProductList">
         <div className="MenuItems">
-          {fetchError ? (
-            <div className="FetchErrorMessage">{fetchError}</div>
-          ) : (
-            <ul>
-              {productList.map((product) => (
-                <li key={product.id} style={{ display: selectedCategory && product.categoria !== selectedCategory ? "none" : "block" }}>
-                  <div>
-                    <img
-                      src={product.imageUri}
-                      alt={product.nome}
-                    />
-                    <h3>{product.nome}</h3>
-                    <p>{product.descricao}</p>
-                    <p>Categoria: {product.categoria}</p>
-                    <p>Valor: {product.valor}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
+          <div className="MenuItemsTitle">
+            <h2>Itens do Menu</h2>
+          </div>
+          <div className="MenuItemsDataContent">
+            {fetchError ? (
+              <div className="FetchErrorMessage">{fetchError}</div>
+            ) : (
+              <div className="ResponsiveBackground">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Nome</th>
+                      <th>Valor</th>
+                      <th>Categoria</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {menuItems.map((menuItem) => (
+                      <tr
+                        key={menuItem.id}
+                        className={
+                          selectedMenuItem === menuItem.id ? "selected" : ""
+                        }
+                      >
+                        <td>
+                          <button
+                            onClick={() => handleMenuItemSelect(menuItem)}
+                          >
+                            {menuItem.nome}
+                          </button>
+                        </td>
+                        <td>{`R$ ${menuItem.valor}`}</td>
+                        <td>{menuItem.categoria}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
