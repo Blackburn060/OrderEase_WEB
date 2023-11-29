@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-fetch("https://orderease-api.onrender.com/api/obter-configuracoes")
+fetch("https://orderease-api.up.railway.app/api/obter-configuracoes")
   .then((response) => response.json())
   .then((data) => {
     // Aqui você pode acessar o valor de primaryColor do objeto retornado pela API
