@@ -13,7 +13,7 @@ function PageMenu() {
   const fetchMenuItems = async () => {
     try {
       const response = await fetch(
-        "https://orderease-api.onrender.com/api/listar-produtos?status=Ativo"
+        "https://orderease-api.up.railway.app/api/listar-produtos?status=Ativo"
       );
       if (response.ok) {
         const menuData = await response.json();

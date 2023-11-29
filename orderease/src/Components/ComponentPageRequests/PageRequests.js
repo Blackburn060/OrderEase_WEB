@@ -8,7 +8,7 @@ function PageRequests() {
   const fetchPedidos = async () => {
     try {
       const response = await fetch(
-        "https://orderease-api.onrender.com/api/obter-pedidos"
+        "https://orderease-api.up.railway.app/api/obter-pedidos"
       );
 
       if (response.ok) {
