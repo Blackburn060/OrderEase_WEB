@@ -14,17 +14,18 @@
 }
 
 .configurationParameters {
-  position: fixed;
   width: calc(27vh + 27vw);
-  height: calc(23vh + 23vw);
+  height: calc(26vh + 26vw);
   flex-shrink: 0;
-  margin-top: 10vh;
-  margin-left: 30%;
+  margin-top: calc(2vh + 2vw);
+  margin-left: calc(7vh + 7vw);
   border-radius: 10px;
   background: #fff;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
   justify-content: center;
   display: flex;
+  overflow-y: auto;
+  position: relative;
 }
 
 .configurationParametersTittle {
@@ -41,31 +42,31 @@
 
 .configurationParametersTittle h2 {
   color: #000;
-  font-size: 1.3vw;
+  font-size: calc(0.9vh + 0.9vw);
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 }
 
 .configurationParametersContent {
-  position: fixed;
+  position: absolute;
   margin-top: calc(2vh + 2vw);
-  width: 38%;
+  width: 95%;
+  height: calc(21vh + 21vw);
+  overflow-y: auto;
 }
 
 .configurationParameters form {
-  display: flex;
   border: 1px solid #ccc;
   padding: 15px;
-  height: calc(17.5vh + 17.5vw);
   border-radius: 10px;
   background-color: #f9f9f9;
+  display: flex;
   flex-direction: column;
 }
 
 .configurationParametersContent label {
   font-size: 2.1vh;
-  display: block;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -93,19 +94,23 @@
 }
 
 .configurationParametersContent input[type="color"] {
-  width: 6%;
-  height: 10%;
+  width: calc(3vh + 3vw);
+  height: calc(1.4vh + 1.4vw);
 }
 
-.configurationParametersContent button {
-  font-size: 2.4vh;
+.configurationParameters button {
+  bottom: calc(1.5vh + 1.5vw);
+  left: calc(0.5vh + 0.5vw);
+  position: absolute;
+  font-size: calc(0.7vh + 0.7vw);
   width: 12em;
 }
 
 .SettingsServer-response {
   position: absolute;
-  top: 64vh;
-  width: 70%;
+  bottom: calc(0.5vh + 0.5vw);
+  right: calc(0.5vh + 0.5vw);
+  width: 60%;
   padding: 1.3vh;
   border-radius: 10px;
   z-index: 2;
@@ -126,8 +131,9 @@
 .SettingsProgress-container {
   overflow: hidden;
   position: absolute;
-  top: 68.6vh;
-  width: 70%;
+  bottom: calc(0.3vh + 0.3vw);
+  right: calc(0.5vh + 0.5vw);
+  width: 62%;
   z-index: 1;
   opacity: 0;
   animation: fadeInOut 3s ease forwards;

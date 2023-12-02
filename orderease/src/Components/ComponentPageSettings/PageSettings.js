@@ -3,6 +3,11 @@ import "./PageSettings.css";
 
 function PageSettings() {
   const [companyName, setCompanyName] = useState("");
+  const [businessDayHours, setbusinessDayHours] = useState("");
+  const [finalWeekSchedules, setfinalWeekSchedules] = useState("");
+  const [linkInstagram, setlinkInstagram] = useState("");
+  const [linkFacebook, setlinkFacebook] = useState("");
+  const [linkWhatsApp, setlinkWhatsApp] = useState("");
   const [companyLogo, setCompanyLogo] = useState("");
   const [loginPageImage, setLoginPageImage] = useState("");
   const [homePageImage, setHomePageImage] = useState("");
@@ -14,6 +19,26 @@ function PageSettings() {
 
   const handleCompanyNameChange = (e) => {
     setCompanyName(e.target.value);
+  };
+
+  const handlebusinessDayHoursChange = (e) => {
+    setbusinessDayHours(e.target.value);
+  };
+
+  const handlefinalWeekSchedulesChange = (e) => {
+    setfinalWeekSchedules(e.target.value);
+  };
+
+  const handlelinkInstagramChange = (e) => {
+    setlinkInstagram(e.target.value);
+  };
+
+  const handlelinkFacebookChange = (e) => {
+    setlinkFacebook(e.target.value);
+  };
+
+  const handlelinkWhatsAppChange = (e) => {
+    setlinkWhatsApp(e.target.value);
   };
 
   const handleFileChange = (e, setImageFunction) => {
@@ -34,6 +59,11 @@ function PageSettings() {
   const handleSubmit = async () => {
     const data = {
       companyName,
+      finalWeekSchedules,
+      businessDayHours,
+      linkInstagram,
+      linkFacebook,
+      linkWhatsApp,
       primaryColor,
       secondaryColor,
     };
@@ -137,6 +167,11 @@ function PageSettings() {
       if (response.ok) {
         const data = await response.json();
         setCompanyName(data.companyName);
+        setbusinessDayHours(data.businessDayHours);
+        setfinalWeekSchedules(data.finalWeekSchedules);
+        setlinkInstagram(data.linkInstagram);
+        setlinkFacebook(data.linkFacebook);
+        setlinkWhatsApp(data.linkWhatsApp);
         setPrimaryColor(data.primaryColor);
         setSecondaryColor(data.secondaryColor);
       } else {
@@ -192,6 +227,53 @@ function PageSettings() {
                 onChange={(e) => handleFileChange(e, setHomePageImage)}
               />
 
+              <label htmlFor="businessDayHours">Horários dias Úteis:</label>
+              <input
+                type="text"
+                placeholder="08:00 às 18:00"
+                id="businessDayHours"
+                value={businessDayHours}
+                onChange={handlebusinessDayHoursChange}
+              />
+
+              <label htmlFor="finalWeekSchedules">
+                Horários Finais de Semana:
+              </label>
+              <input
+                type="text"
+                placeholder="10:00 às 14:00"
+                id="finalWeekSchedules"
+                value={finalWeekSchedules}
+                onChange={handlefinalWeekSchedulesChange}
+              />
+
+              <label htmlFor="linkInstagram">Link Instagram:</label>
+              <input
+                type="text"
+                placeholder="link/instagram.com"
+                id="linkInstagram"
+                value={linkInstagram}
+                onChange={handlelinkInstagramChange}
+              />
+
+              <label htmlFor="linkFacebook">Link Facebook:</label>
+              <input
+                type="text"
+                placeholder="link/facebook.com"
+                id="linkFacebook"
+                value={linkFacebook}
+                onChange={handlelinkFacebookChange}
+              />
+
+              <label htmlFor="linkWhatsApp">Link WhatsApp:</label>
+              <input
+                type="text"
+                placeholder="link/whatsapp.com"
+                id="linkWhatsApp"
+                value={linkWhatsApp}
+                onChange={handlelinkWhatsAppChange}
+              />
+
               <label htmlFor="primaryColor">Cor Principal:</label>
               <input
                 type="color"
@@ -207,16 +289,16 @@ function PageSettings() {
                 value={secondaryColor}
                 onChange={(e) => setSecondaryColor(e.target.value)}
               />
-
-              <button
-                className="buttonDefaultStyle"
-                type="button"
-                onClick={handleSubmit}
-              >
-                Salvar Configurações
-              </button>
             </form>
+            
           </div>
+          <button
+              className="buttonDefaultStyle"
+              type="button"
+              onClick={handleSubmit}
+            >
+              Salvar Configurações
+            </button>
           {serverResponse && (
             <div
               className={`SettingsServer-response ${
