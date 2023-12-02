@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./PageHome.css";
-import ImageUserLogo from "../../assets/Images/LogoExemplo.png";
 
 function PageHome() {
   const [companyInfo, setCompanyInfo] = useState({
