@@ -4,12 +4,13 @@ import UserLogo from "../../assets/Images/IconeUserLoginPage.png";
 import IconSearch from "../../assets/Images/IconeLupaBarraNavegacao.png";
 import MenuIcon from "../../assets/Images/IconeHamburguerMenuLateral.png";
 import CloseIcon from "../../assets/Images/IconeVoltarMenuLateral2.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { getAuth, signOut } from "firebase/auth";
 
 function NavigationBar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [menuIcon, setMenuIcon] = useState(MenuIcon);
-  const [overlayVisible, setOverlayVisible] = useState(false); // Novo estado para a tela de sobreposição
+  const [overlayVisible, setOverlayVisible] = useState(false);
   const [companyInfo, setCompanyInfo] = useState({
     name: "",
     logoUrl: "",
@@ -65,6 +66,20 @@ function NavigationBar() {
     }
   };
 
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      const auth = getAuth();
+      await signOut(auth);
+      // Redirecionar para a página de login usando a função navigate
+      navigate("/PageLogin");
+      console.log("Logout bem-sucedido!");
+    } catch (error) {
+      console.error("Erro ao fazer logout:", error.message);
+    }
+  };
+
   return (
     <div className="page">
       {overlayVisible && (
@@ -113,6 +128,9 @@ function NavigationBar() {
               Configurações
             </Link>
           </li>
+          <li>
+            <button onClick={handleLogout}>Sair</button>
+          </li>
         </ul>
       </div>
       <div className="navbar">
@@ -136,13 +154,11 @@ function NavigationBar() {
         </div>
         <div className="navbar-right">
           <span>Nome do Usuário</span>
-          <Link to="/PageLogin">
-            <img src={UserLogo} alt="Logo do Usuário" className="user-logo" />
-          </Link>
+          <img src={UserLogo} alt="Logo do Usuário" className="user-logo" />
         </div>
       </div>
       <div className="footer">
-        <span>Desenvolvido por TizDeveloper Inc.</span>
+        <span>Desenvolvido por OrderEase©</span>
       </div>
     </div>
   );
