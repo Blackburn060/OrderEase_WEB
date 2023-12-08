@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./NavigationBar.css";
 import UserLogo from "../../assets/Images/IconeUserLoginPage.png";
-import IconSearch from "../../assets/Images/IconeLupaBarraNavegacao.png";
 import MenuIcon from "../../assets/Images/IconeHamburguerMenuLateral.png";
 import CloseIcon from "../../assets/Images/IconeVoltarMenuLateral2.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -143,14 +142,6 @@ function NavigationBar() {
             />
           </Link>
           <span>{companyInfo.name}</span>
-        </div>
-        <div className="navbar-center">
-          <img
-            src={IconSearch}
-            alt="Ícone de Pesquisa"
-            className="search-icon"
-          />
-          <input type="text" placeholder="Pesquisar..." />
         </div>
         <div className="navbar-right">
           <span>Nome do Usuário</span>
