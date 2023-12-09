@@ -4,7 +4,7 @@ import "./PageMenu.css";
 function PageMenu() {
   const [menuItems, setMenuItems] = useState([]);
   const [fetchError, setFetchError] = useState(null);
-  const [selectedMenuItem, setSelectedMenuItem] = useState(null);
+  const [selectedMenuItem] = useState(null);
 
   useEffect(() => {
     fetchMenuItems();
@@ -27,10 +27,6 @@ function PageMenu() {
       console.error("Erro ao buscar itens do menu:", error);
       setFetchError("Erro ao buscar itens do menu!");
     }
-  };
-
-  const handleMenuItemSelect = (menuItem) => {
-    setSelectedMenuItem(menuItem);
   };
 
   const handleToggleCardapio = async () => {
@@ -57,7 +53,6 @@ function PageMenu() {
 
       if (response.ok) {
         console.log("Campo cardapio atualizado com sucesso!");
-        // Atualize o estado local ou refaça a chamada da API para obter os dados atualizados
         fetchMenuItems();
       } else {
         console.error("Erro ao atualizar o campo cardapio");
@@ -82,41 +77,38 @@ function PageMenu() {
               <div className="FetchErrorMessage">{fetchError}</div>
             ) : (
               <div className="ResponsiveBackground">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Nome</th>
-                      <th>Valor</th>
-                      <th>Categoria</th>
-                      <th>Cardápio</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {menuItems.map((menuItem) => (
-                      <tr
-                        key={menuItem.id}
-                        className={
-                          selectedMenuItem === menuItem.id ? "selected" : ""
-                        }
-                      >
-                        <td>
-                          <button
-                            onClick={() => handleMenuItemSelect(menuItem)}
-                          >
-                            {menuItem.nome}
-                          </button>
-                        </td>
-                        <td>{`R$ ${menuItem.valor}`}</td>
-                        <td>{menuItem.categoria}</td>
-                        <td>
-                          <button onClick={handleToggleCardapio}>
-                            {menuItem.cardapio}
-                          </button>
-                        </td>
+                {/* Adiciona um contêiner com altura fixa e scroll */}
+                <div className="TableContainer" style={{ height: "400px", overflow: "auto" }}>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Nome</th>
+                        <th>Valor</th>
+                        <th>Categoria</th>
+                        <th>Cardápio</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {menuItems.map((menuItem) => (
+                        <tr
+                          key={menuItem.id}
+                          className={
+                            selectedMenuItem === menuItem.id ? "selected" : ""
+                          }
+                        >
+                          <td>{menuItem.nome}</td>
+                          <td>{`R$ ${menuItem.valor}`}</td>
+                          <td>{menuItem.categoria}</td>
+                          <td>
+                            <button onClick={handleToggleCardapio}>
+                              {menuItem.cardapio}
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             )}
           </div>
