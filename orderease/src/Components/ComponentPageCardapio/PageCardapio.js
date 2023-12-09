@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
-import "./PageMenu.css";
+import "./PageCardapio.css";
 
-function PageMenu() {
+function PageCardapio() {
   const [productList, setProductList] = useState([]);
   const [categories, setCategories] = useState([]);
   const [fetchError, setFetchError] = useState(null);
@@ -9,7 +9,7 @@ function PageMenu() {
 
   const fetchCategories = useCallback(async () => {
     try {
-      const response = await fetch("https://orderease-api.onrender.com/api/listar-produtos?status=Ativo");
+      const response = await fetch("https://orderease-api.up.railway.app/api/listar-produtos?status=Ativo");
 
       if (response.ok) {
         const productsData = await response.json();
@@ -27,7 +27,7 @@ function PageMenu() {
 
   const fetchProducts = useCallback(async () => {
     try {
-      let apiUrl = "https://orderease-api.onrender.com/api/listar-produtos?status=Ativo";
+      let apiUrl = "https://orderease-api.up.railway.app/api/listar-produtos?status=Ativo";
 
       if (selectedCategory) {
         apiUrl += `&categoria=${selectedCategory}`;
@@ -114,4 +114,4 @@ function PageMenu() {
   );
 }
 
-export default PageMenu;
+export default PageCardapio;

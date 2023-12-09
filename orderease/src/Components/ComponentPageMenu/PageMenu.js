@@ -33,6 +33,40 @@ function PageMenu() {
     setSelectedMenuItem(menuItem);
   };
 
+  const handleToggleCardapio = async () => {
+    if (!selectedMenuItem) {
+      return;
+    }
+
+    const updatedMenuItem = {
+      ...selectedMenuItem,
+      cardapio: selectedMenuItem.cardapio === "Sim" ? "Não" : "Sim",
+    };
+
+    try {
+      const response = await fetch(
+        `https://orderease-api.up.railway.app/api/atualizar-produto/${selectedMenuItem.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedMenuItem),
+        }
+      );
+
+      if (response.ok) {
+        console.log("Campo cardapio atualizado com sucesso!");
+        // Atualize o estado local ou refaça a chamada da API para obter os dados atualizados
+        fetchMenuItems();
+      } else {
+        console.error("Erro ao atualizar o campo cardapio");
+      }
+    } catch (error) {
+      console.error("Erro durante a solicitação para o servidor:", error);
+    }
+  };
+
   return (
     <div className="page">
       <div className="contentPageMenu">
@@ -54,6 +88,7 @@ function PageMenu() {
                       <th>Nome</th>
                       <th>Valor</th>
                       <th>Categoria</th>
+                      <th>Cardápio</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -73,6 +108,11 @@ function PageMenu() {
                         </td>
                         <td>{`R$ ${menuItem.valor}`}</td>
                         <td>{menuItem.categoria}</td>
+                        <td>
+                          <button onClick={handleToggleCardapio}>
+                            {menuItem.cardapio}
+                          </button>
+                        </td>
                       </tr>
                     ))}
                   </tbody>
