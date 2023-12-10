@@ -1,3 +1,9 @@
+.BlueStripe {
+  height: 30px; 
+  background-color: #304DA9;
+  width: 100%;
+}
+
 .contentPageMenu {
     display: flex;
   }

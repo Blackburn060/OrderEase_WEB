@@ -4,7 +4,7 @@ import "./PageMenu.css";
 function PageMenu() {
   const [menuItems, setMenuItems] = useState([]);
   const [fetchError, setFetchError] = useState(null);
-  const [selectedMenuItem] = useState(null);
+  const [selectedMenuItem, setSelectedMenuItem] = useState(null);
 
   useEffect(() => {
     fetchMenuItems();
@@ -13,7 +13,7 @@ function PageMenu() {
   const fetchMenuItems = async () => {
     try {
       const response = await fetch(
-        "https://orderease-api.up.railway.app/api/listar-produtos?status=Ativo"
+        "https://orderease-api.up.railway.app/api/listar-produtos"
       );
       if (response.ok) {
         const menuData = await response.json();
@@ -29,19 +29,15 @@ function PageMenu() {
     }
   };
 
-  const handleToggleCardapio = async () => {
-    if (!selectedMenuItem) {
-      return;
-    }
-
+  const handleToggleCardapio = async (menuItem) => {
     const updatedMenuItem = {
-      ...selectedMenuItem,
-      cardapio: selectedMenuItem.cardapio === "Sim" ? "Não" : "Sim",
+      ...menuItem,
+      cardapio: menuItem.cardapio === "Sim" ? "Não" : "Sim",
     };
 
     try {
       const response = await fetch(
-        `https://orderease-api.up.railway.app/api/atualizar-produto/${selectedMenuItem.id}`,
+        `https://orderease-api.up.railway.app/api/atualizar-produto/${menuItem.id}`,
         {
           method: "PUT",
           headers: {
@@ -62,6 +58,21 @@ function PageMenu() {
     }
   };
 
+  const handleMenuChange = (value, menuItem) => {
+    setSelectedMenuItem(menuItem);
+    handleToggleCardapio({
+      ...menuItem,
+      cardapio: value,
+    });
+  };
+
+  const handleEnviarClick = () => {
+    if (selectedMenuItem) {
+      const cardapioValue = selectedMenuItem.cardapio;
+      alert(`Valor selecionado: ${cardapioValue}`);
+    }
+  };
+
   return (
     <div className="page">
       <div className="contentPageMenu">
@@ -77,7 +88,10 @@ function PageMenu() {
               <div className="FetchErrorMessage">{fetchError}</div>
             ) : (
               <div className="ResponsiveBackground">
-                <div className="TableContainer" style={{ height: "400px", overflow: "auto" }}>
+                <div
+                  className="TableContainer"
+                  style={{ height: "400px", overflow: "auto" }}
+                >
                   <table>
                     <thead>
                       <tr>
@@ -92,16 +106,22 @@ function PageMenu() {
                         <tr
                           key={menuItem.id}
                           className={
-                            selectedMenuItem === menuItem.id ? "selected" : ""
+                            selectedMenuItem === menuItem ? "selected" : ""
                           }
                         >
                           <td>{menuItem.nome}</td>
                           <td>{`R$ ${menuItem.valor}`}</td>
                           <td>{menuItem.categoria}</td>
                           <td>
-                            <button onClick={handleToggleCardapio}>
-                              {menuItem.cardapio}
-                            </button>
+                            <select
+                              value={menuItem.cardapio}
+                              onChange={(e) =>
+                                handleMenuChange(e.target.value, menuItem)
+                              }
+                            >
+                              <option value="Sim">Sim</option>
+                              <option value="Não">Não</option>
+                            </select>
                           </td>
                         </tr>
                       ))}
@@ -111,6 +131,9 @@ function PageMenu() {
               </div>
             )}
           </div>
+        </div>
+        <div className="EnviarButton">
+          <button onClick={handleEnviarClick}>Enviar</button>
         </div>
       </div>
     </div>

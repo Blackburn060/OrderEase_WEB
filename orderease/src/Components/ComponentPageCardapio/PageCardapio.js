@@ -68,9 +68,10 @@ function PageCardapio() {
   return (
 
     <div className="page">
-      <div className="contentPageMenu">
         <div className="MenuTitle-container">
-        </div>
+        <div className="contentPageMenu"></div>
+        <div className="BlueStripe"></div>
+        <div className="MenuTitle-container"></div>
         <div className="CategoryButtons">
           <button onClick={handleShowAll} className={!selectedCategory ? "active" : ""}>
             Todos
