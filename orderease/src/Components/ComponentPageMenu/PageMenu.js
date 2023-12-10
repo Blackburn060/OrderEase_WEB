@@ -4,8 +4,9 @@ import "./PageMenu.css";
 function PageMenu() {
   const [PMmenuItems, setPMMenuItems] = useState([]);
   const [PMfetchError, setPMFetchError] = useState(null);
-  const [PMselectedMenuItem, setPMSelectedMenuItem] = useState(null);
-
+  const [PMselectedMenuItems, setPMSelectedMenuItems] = useState([]);
+  const [PMselectedOptions, setPMSelectedOptions] = useState({});
+  
   useEffect(() => {
     fetchMenuItems();
   }, []);
@@ -19,6 +20,19 @@ function PageMenu() {
         const menuData = await response.json();
         setPMMenuItems(menuData);
         setPMFetchError(null);
+  
+        const initialSelectedItems = menuData.reduce((acc, menuItem) => {
+          if (menuItem.cardapio === "Sim") {
+            acc.push(menuItem.id);
+          }
+          setPMSelectedOptions((prevOptions) => ({
+            ...prevOptions,
+            [menuItem.id]: menuItem.cardapio,
+          }));
+  
+          return acc;
+        }, []);
+        setPMSelectedMenuItems(initialSelectedItems);
       } else {
         console.error("Erro ao buscar itens do menu:", response.statusText);
         setPMFetchError("Erro ao buscar itens do menu!");
@@ -28,14 +42,31 @@ function PageMenu() {
       setPMFetchError("Erro ao buscar itens do menu!");
     }
   };
-
-  const handleToggleCardapio = async (menuItem) => {
-    const updatedMenuItem = {
-      ...menuItem,
-      cardapio: menuItem.cardapio === "Sim" ? "Não" : "Sim",
-    };
-
+  
+  const handleMenuItemSelect = async (menuItem, value) => {
     try {
+      setPMSelectedMenuItems((prevSelected) => {
+        const updatedSelection = [...prevSelected];
+        const existingIndex = updatedSelection.findIndex(
+          (selectedId) => selectedId === menuItem.id
+        );
+
+        if (existingIndex !== -1) {
+          updatedSelection.splice(existingIndex, 1);
+        }
+
+        if (value === "Sim") {
+          updatedSelection.push(menuItem.id);
+        }
+        
+        setPMSelectedOptions((prevOptions) => ({
+          ...prevOptions,
+          [menuItem.id]: value,
+        }));
+
+        return updatedSelection;
+      });
+
       const response = await fetch(
         `https://orderease-api.up.railway.app/api/atualizar-produto-cardapio/${menuItem.id}`,
         {
@@ -43,39 +74,18 @@ function PageMenu() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(updatedMenuItem),
+          body: JSON.stringify({ cardapio: value }),
         }
       );
 
-      if (response.ok) {
-        console.log("Campo cardápio atualizado com sucesso!");
-        fetchMenuItems();
-      } else {
-        console.error(
-          "Erro ao atualizar o campo cardápio:",
-          response.statusText
-        );
+      if (!response.ok) {
+        console.error("Erro ao atualizar item do menu:", response.statusText);
       }
     } catch (error) {
-      console.error("Erro durante a solicitação para o servidor:", error);
+      console.error("Erro ao atualizar item do menu:", error);
     }
   };
-
-  const handleMenuChange = (menuItem) => {
-    setPMSelectedMenuItem(menuItem);
-    handleToggleCardapio({
-      ...menuItem,
-      cardapio: menuItem.cardapio === "Sim" ? "Não" : "Sim",
-    });
-  };
-
-  const handleEnviarClick = () => {
-    if (PMselectedMenuItem) {
-      const cardapioValue = PMselectedMenuItem.cardapio;
-      alert(`Valor selecionado: ${cardapioValue}`);
-    }
-  };
-
+  
   return (
     <div className="PMpage">
       <div className="PMcontentPageMenu">
@@ -101,7 +111,7 @@ function PageMenu() {
                         <th>Nome</th>
                         <th>Valor</th>
                         <th>Categoria</th>
-                        <th>Ativo no menu?</th>
+                        <th>Item de cardápio</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -109,18 +119,26 @@ function PageMenu() {
                         <tr
                           key={menuItem.id}
                           className={
-                            PMselectedMenuItem === menuItem ? "selected" : ""
+                            PMselectedMenuItems.includes(menuItem.id)
+                              ? "selected"
+                              : ""
                           }
                         >
                           <td>{menuItem.nome}</td>
                           <td>{`R$ ${menuItem.valor}`}</td>
                           <td>{menuItem.categoria}</td>
                           <td>
-                            <input
-                              type="checkbox"
-                              checked={menuItem.cardapio === "Sim"}
-                              onChange={() => handleMenuChange(menuItem)}
-                            />
+                          <select
+                            value={PMselectedOptions[menuItem.id] || menuItem.cardapio}
+                            onChange={(e) => handleMenuItemSelect(menuItem, e.target.value)}
+                            style={{
+                              backgroundColor:
+                                PMselectedOptions[menuItem.id] === "Sim" ? "lightgreen" : "LightCoral",
+                            }}
+                          >
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                          </select>
                           </td>
                         </tr>
                       ))}
@@ -130,9 +148,6 @@ function PageMenu() {
               </div>
             )}
           </div>
-        </div>
-        <div className="PMEnviarButton">
-          <button onClick={handleEnviarClick}>Enviar</button>
         </div>
       </div>
     </div>

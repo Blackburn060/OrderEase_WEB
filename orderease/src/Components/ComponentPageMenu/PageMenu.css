@@ -81,30 +81,6 @@
   transition: background-color 0.3s ease;
 }
 
-.PMinput[type="checkbox"] {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
-
-.PMEnviarButton {
-  margin-top: 20px;
-}
-
-.PMbutton {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.PMbutton:hover {
-  background-color: #45a049;
-}
-
 .PMFetchErrorMessage {
   margin-left: 2vw;
   margin-top: 1vw;
@@ -121,6 +97,23 @@
 
 .PMTableContainer {
   background-color: white;
+}
+
+.PMMenuItemsDataContent select {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0.5vw;
+  width: 100%;
+  color: black;
+  font-size: 1vw;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.PMMenuItemsDataContent select option {
+  color: black;
+  font-weight: normal;
 }
 
 @keyframes fadeInOut {

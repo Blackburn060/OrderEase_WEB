@@ -28,26 +28,28 @@ function PageCardapio() {
   const fetchProducts = useCallback(async () => {
     try {
       let apiUrl = "https://orderease-api.up.railway.app/api/listar-produtos?status=Ativo";
-
+  
       if (PCselectedCategory) {
         apiUrl += `&categoria=${PCselectedCategory}`;
       }
-
+  
       const response = await fetch(apiUrl);
-
+  
       if (response.ok) {
         const productsData = await response.json();
-        setPCProductList(productsData);
-        setPCFetchError(null);
-      } else {
-        console.error("Erro ao buscar produtos:", response.statusText);
-        setPCFetchError("Erro ao buscar produtos!");
-      }
-    } catch (error) {
-      console.error("Erro ao buscar produtos:", error);
+        const filteredProducts = productsData.filter(product => product.cardapio === "Sim");
+
+      setPCProductList(filteredProducts);
+      setPCFetchError(null);
+    } else {
+      console.error("Erro ao buscar produtos:", response.statusText);
       setPCFetchError("Erro ao buscar produtos!");
     }
-  }, [PCselectedCategory]);
+  } catch (error) {
+    console.error("Erro ao buscar produtos:", error);
+    setPCFetchError("Erro ao buscar produtos!");
+  }
+}, [PCselectedCategory]);
 
   useEffect(() => {
     fetchCategories();
