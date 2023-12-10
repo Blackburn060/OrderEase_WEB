@@ -10,6 +10,7 @@ import PageRequests from "./Components/ComponentPageRequests/PageRequests";
 import PageSettings from "./Components/ComponentPageSettings/PageSettings";
 import PageLogin from "./Components/ComponentPageLogin/PageLogin";
 import NavigationBar from "./Components/ComponentNavigationBar/NavigationBar";
+import HomeCardapio from "./Components/ComponentPageCardapio/homeCardapio";
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
         </Route>
         <Route path="/PageLogin" element={<PageLogin />} />
         <Route path="/PageCardapio" element={<PageCardapio />} />
+        <Route path="/HomeCardapio" element={<HomeCardapio />} />
+
       </Routes>
     </Router>
   );
