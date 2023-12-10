@@ -3,6 +3,7 @@
   }
   
   .CategoryButtons {
+    overflow-x: scroll;
     display: flex;
     justify-content: center;
     margin-top: 10px;
@@ -11,6 +12,7 @@
   .CategoryButtons button {
     margin: 0 10px;
     padding: 5px 10px;
+    margin-bottom: 10px;
     font-size: 14px;
     cursor: pointer;
   }
@@ -26,16 +28,19 @@
     display: flex;
     justify-content: space-around;
     margin-bottom: 10px;
+    border-radius: 5px;
   }
   
   .CategoryButtons button {
     padding: 5px 10px;
     cursor: pointer;
+    border-radius: 5px;
   }
   
   .CategoryButtons button.active {
     background-color: #304DA9;
     color: #fff;
+    border-radius: 5px;
   }
   
   .MenuTitle-container h1 {
@@ -51,7 +56,6 @@
   
   .MenuItems {
     width: 100%;
-    margin-top: calc(1vh + 1vw);
   }
   
   .MenuItems ul {
@@ -61,6 +65,7 @@
   
   .MenuItems ul li {
     margin-bottom: 20px;
+    margin-right: 10px;
   }
   
   .MenuItems div {
@@ -101,7 +106,6 @@
     border: 1px solid #ccc;
     border-radius: 10px;
     background-color: #304DA9;
-    margin-right: 10px;
   }
 
   .ImageContainer {
@@ -114,7 +118,7 @@
   }
 
   .FetchErrorMessage {
-    margin-left: 2vh;
+    margin-left: 1vh;
     margin-top: 1vh;
     width: 100%;
     padding: 1.3vh;

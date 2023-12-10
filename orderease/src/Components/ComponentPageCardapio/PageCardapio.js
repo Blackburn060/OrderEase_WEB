@@ -6,7 +6,7 @@ function PageCardapio() {
   const [categories, setCategories] = useState([]);
   const [fetchError, setFetchError] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
-
+ 
   const fetchCategories = useCallback(async () => {
     try {
       const response = await fetch("https://orderease-api.up.railway.app/api/listar-produtos?status=Ativo");
@@ -66,10 +66,10 @@ function PageCardapio() {
   };
 
   return (
+
     <div className="page">
       <div className="contentPageMenu">
         <div className="MenuTitle-container">
-          <h1>Menu</h1>
         </div>
         <div className="CategoryButtons">
           <button onClick={handleShowAll} className={!selectedCategory ? "active" : ""}>
