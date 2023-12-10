@@ -93,19 +93,20 @@ function PageCardapio() {
           ) : (
             <ul>
               {productList.map((product) => (
-                <li key={product.id} style={{ display: selectedCategory && product.categoria !== selectedCategory ? "none" : "block" }}>
-                  <div>
-                    <img
-                      src={product.imageUri}
-                      alt={product.nome}
-                    />
-                    <h3>{product.nome}</h3>
-                    <p>{product.descricao}</p>
-                    <p>Categoria: {product.categoria}</p>
-                    <p>Valor: {product.valor}</p>
-                  </div>
-                </li>
-              ))}
+                  <li key={product.id} style={{ display: selectedCategory && product.categoria !== selectedCategory ? "none" : "block" }}>
+                    <div className="ProductContainer">
+                      <div className="TextContainer">
+                        <h3>{product.nome}</h3>
+                        <p>{product.descricao}</p>
+                        <p>Categoria: {product.categoria}</p>
+                        <p1>Valor: R$ {product.valor}</p1>
+                      </div>
+                      <div className="ImageContainer">
+                        <img src={product.imageUri} alt={product.nome} />
+                      </div>
+                    </div>
+                  </li>
+                ))}
             </ul>
           )}
         </div>

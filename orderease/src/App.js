@@ -20,13 +20,13 @@ function App() {
           <Route path="/home" element={<PageHome />} />
           <Route path="/pageProduct" element={<PageProduct />} />
           <Route path="/PageMenu" element={<PageMenu />} />
-          <Route path="/PageCardapio" element={<PageCardapio />} />
           <Route path="/PageTables" element={<PageTables />} />
           <Route path="/PageWaiters" element={<PageWaiters />} />
           <Route path="/PageRequests" element={<PageRequests />} />
           <Route path="/PageSettings" element={<PageSettings />} />
         </Route>
         <Route path="/PageLogin" element={<PageLogin />} />
+        <Route path="/PageCardapio" element={<PageCardapio />} />
       </Routes>
     </Router>
   );

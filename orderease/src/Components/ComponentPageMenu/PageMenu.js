@@ -77,7 +77,6 @@ function PageMenu() {
               <div className="FetchErrorMessage">{fetchError}</div>
             ) : (
               <div className="ResponsiveBackground">
-                {/* Adiciona um contêiner com altura fixa e scroll */}
                 <div className="TableContainer" style={{ height: "400px", overflow: "auto" }}>
                   <table>
                     <thead>

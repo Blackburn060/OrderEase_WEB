@@ -16,9 +16,9 @@
   }
   
   .CategoryButtons button.active {
-    background-color: #007bff;
+    background-color: #304DA9;
     color: #fff;
-    border: 1px solid #007bff;
+    border: 1px solid #304DA9;
     border-radius: 5px;
   }
 
@@ -34,10 +34,9 @@
   }
   
   .CategoryButtons button.active {
-    background-color: #007bff;
+    background-color: #304DA9;
     color: #fff;
   }
-
   
   .MenuTitle-container h1 {
     align-items: flex-start;
@@ -68,22 +67,52 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    background-color: #f9f9f9;
-  }
+    background-color: #304DA9;
+  }  
   
   .MenuItems h3 {
-    color: #000;
+    color: #ffffff;
     font-size: calc(1.5vh + 1.5vw);
     font-style: normal;
-    font-weight: 700;
+    font-weight: bold;
     line-height: normal;
   }
   
   .MenuItems p {
-    color: #555;
+    color: #ffffff;
+    margin-bottom: 10px;
     font-size: calc(1vh + 1vw);
   }
   
+  .MenuItems p1 {
+    color: yellow;
+    text-shadow: 10px solid black;
+    margin-bottom: 10px;
+    font-size: calc(1vh + 1vw);
+  }
+
+  .ProductContainer {
+    display: flex;
+  }
+  
+  .TextContainer {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #304DA9;
+    margin-right: 10px;
+  }
+
+  .ImageContainer {
+    width: 30%;
+  }
+
+  .MenuItems img {
+    max-width: 100%;
+    height: auto;
+  }
+
   .FetchErrorMessage {
     margin-left: 2vh;
     margin-top: 1vh;
