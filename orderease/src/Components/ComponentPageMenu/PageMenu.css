@@ -2,7 +2,11 @@
   display: flex;
   justify-content: center;
 }
-
+.MenuItemsDataContent {
+  background: white;
+  table-layout: fixed;
+  overflow: auto;
+}
 .MenuTitle-container h1 {
   padding-left: calc(5vh + 5vw);
   text-align: left;
@@ -12,7 +16,6 @@
   font-weight: 700;
   line-height: normal;
 }
-
 .MenuItems {
   position: relative;
   width: 75%;
@@ -22,13 +25,12 @@
   margin-left: 2%;
   margin-right: 2%;
   border-radius: 10px;
-  background: #fff;
+  background: white;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
   border: 1px solid #ccc;
 }
-
 .MenuItemsTitle {
   height: 3vw;
   border-radius: 10px 10px 0 0;
@@ -38,7 +40,6 @@
   display: flex;
   z-index: 1;
 }
-
 .MenuItemsTitle h2 {
   color: #000;
   font-size: 1.3vw;
@@ -46,19 +47,16 @@
   font-weight: 700;
   line-height: normal;
 }
-
 .MenuItemsDataContent input {
   font-size: 0.7vw;
   width: 100%;
   padding: 1vw;
 }
-
 .MenuItemsDataContent table {
   width: 100%;
   white-space: nowrap;
   border-collapse: collapse;
 }
-
 .MenuItemsDataContent th,
 .MenuItemsDataContent td {
   padding: 1vw;
@@ -75,12 +73,28 @@
   transition: background-color 0.3s ease;
 }
 
-.MenuItemsDataContent button[data-cardapio="Sim"] {
-  background-color: #4caf50;
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 
-.MenuItemsDataContent button[data-cardapio="Não"] {
-  background-color: #f44336;
+.EnviarButton {
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
 }
 
 .FetchErrorMessage {
@@ -95,6 +109,10 @@
   background-color: #f44336;
   color: white;
   text-align: center;
+}
+
+.TableContainer {
+  background-color: white;
 }
 
 @keyframes fadeInOut {

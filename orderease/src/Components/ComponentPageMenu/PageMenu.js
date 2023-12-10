@@ -37,7 +37,7 @@ function PageMenu() {
 
     try {
       const response = await fetch(
-        `https://orderease-api.up.railway.app/api/atualizar-produto/${menuItem.id}`,
+        `https://orderease-api.up.railway.app/api/atualizar-produto-cardapio/${menuItem.id}`,
         {
           method: "PUT",
           headers: {
@@ -48,21 +48,24 @@ function PageMenu() {
       );
 
       if (response.ok) {
-        console.log("Campo cardapio atualizado com sucesso!");
+        console.log("Campo cardápio atualizado com sucesso!");
         fetchMenuItems();
       } else {
-        console.error("Erro ao atualizar o campo cardapio");
+        console.error(
+          "Erro ao atualizar o campo cardápio:",
+          response.statusText
+        );
       }
     } catch (error) {
       console.error("Erro durante a solicitação para o servidor:", error);
     }
   };
 
-  const handleMenuChange = (value, menuItem) => {
+  const handleMenuChange = (menuItem) => {
     setSelectedMenuItem(menuItem);
     handleToggleCardapio({
       ...menuItem,
-      cardapio: value,
+      cardapio: menuItem.cardapio === "Sim" ? "Não" : "Sim",
     });
   };
 
@@ -98,7 +101,7 @@ function PageMenu() {
                         <th>Nome</th>
                         <th>Valor</th>
                         <th>Categoria</th>
-                        <th>Cardápio</th>
+                        <th>Ativo no menu?</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -113,15 +116,11 @@ function PageMenu() {
                           <td>{`R$ ${menuItem.valor}`}</td>
                           <td>{menuItem.categoria}</td>
                           <td>
-                            <select
-                              value={menuItem.cardapio}
-                              onChange={(e) =>
-                                handleMenuChange(e.target.value, menuItem)
-                              }
-                            >
-                              <option value="Sim">Sim</option>
-                              <option value="Não">Não</option>
-                            </select>
+                            <input
+                              type="checkbox"
+                              checked={menuItem.cardapio === "Sim"}
+                              onChange={() => handleMenuChange(menuItem)}
+                            />
                           </td>
                         </tr>
                       ))}
