@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./PageMenu.css";
 
 function PageMenu() {
-  const [menuItems, setMenuItems] = useState([]);
-  const [fetchError, setFetchError] = useState(null);
-  const [selectedMenuItem, setSelectedMenuItem] = useState(null);
+  const [PMmenuItems, setPMMenuItems] = useState([]);
+  const [PMfetchError, setPMFetchError] = useState(null);
+  const [PMselectedMenuItem, setPMSelectedMenuItem] = useState(null);
 
   useEffect(() => {
     fetchMenuItems();
@@ -17,15 +17,15 @@ function PageMenu() {
       );
       if (response.ok) {
         const menuData = await response.json();
-        setMenuItems(menuData);
-        setFetchError(null);
+        setPMMenuItems(menuData);
+        setPMFetchError(null);
       } else {
         console.error("Erro ao buscar itens do menu:", response.statusText);
-        setFetchError("Erro ao buscar itens do menu!");
+        setPMFetchError("Erro ao buscar itens do menu!");
       }
     } catch (error) {
       console.error("Erro ao buscar itens do menu:", error);
-      setFetchError("Erro ao buscar itens do menu!");
+      setPMFetchError("Erro ao buscar itens do menu!");
     }
   };
 
@@ -62,7 +62,7 @@ function PageMenu() {
   };
 
   const handleMenuChange = (menuItem) => {
-    setSelectedMenuItem(menuItem);
+    setPMSelectedMenuItem(menuItem);
     handleToggleCardapio({
       ...menuItem,
       cardapio: menuItem.cardapio === "Sim" ? "Não" : "Sim",
@@ -70,29 +70,29 @@ function PageMenu() {
   };
 
   const handleEnviarClick = () => {
-    if (selectedMenuItem) {
-      const cardapioValue = selectedMenuItem.cardapio;
+    if (PMselectedMenuItem) {
+      const cardapioValue = PMselectedMenuItem.cardapio;
       alert(`Valor selecionado: ${cardapioValue}`);
     }
   };
 
   return (
-    <div className="page">
-      <div className="contentPageMenu">
-        <div className="MenuTitle-container">
+    <div className="PMpage">
+      <div className="PMcontentPageMenu">
+        <div className="PMMenuTitle-container">
           <h1>Menu</h1>
         </div>
-        <div className="MenuItems">
-          <div className="MenuItemsTitle">
+        <div className="PMMenuItems">
+          <div className="PMMenuItemsTitle">
             <h2>Itens do Menu</h2>
           </div>
-          <div className="MenuItemsDataContent">
-            {fetchError ? (
-              <div className="FetchErrorMessage">{fetchError}</div>
+          <div className="PMMenuItemsDataContent">
+            {PMfetchError ? (
+              <div className="PMFetchErrorMessage">{PMfetchError}</div>
             ) : (
-              <div className="ResponsiveBackground">
+              <div className="PMResponsiveBackground">
                 <div
-                  className="TableContainer"
+                  className="PMTableContainer"
                   style={{ height: "400px", overflow: "auto" }}
                 >
                   <table>
@@ -105,11 +105,11 @@ function PageMenu() {
                       </tr>
                     </thead>
                     <tbody>
-                      {menuItems.map((menuItem) => (
+                      {PMmenuItems.map((menuItem) => (
                         <tr
                           key={menuItem.id}
                           className={
-                            selectedMenuItem === menuItem ? "selected" : ""
+                            PMselectedMenuItem === menuItem ? "selected" : ""
                           }
                         >
                           <td>{menuItem.nome}</td>
@@ -131,7 +131,7 @@ function PageMenu() {
             )}
           </div>
         </div>
-        <div className="EnviarButton">
+        <div className="PMEnviarButton">
           <button onClick={handleEnviarClick}>Enviar</button>
         </div>
       </div>

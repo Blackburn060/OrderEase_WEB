@@ -1,13 +1,15 @@
-.contentPageMenu {
+.PMcontentPageMenu {
   display: flex;
   justify-content: center;
 }
-.MenuItemsDataContent {
+
+.PMMenuItemsDataContent {
   background: white;
   table-layout: fixed;
   overflow: auto;
 }
-.MenuTitle-container h1 {
+
+.PMMenuTitle-container h1 {
   padding-left: calc(5vh + 5vw);
   text-align: left;
   color: #000;
@@ -16,7 +18,8 @@
   font-weight: 700;
   line-height: normal;
 }
-.MenuItems {
+
+.PMMenuItems {
   position: relative;
   width: 75%;
   max-width: 90%;
@@ -31,7 +34,8 @@
   flex-direction: column;
   border: 1px solid #ccc;
 }
-.MenuItemsTitle {
+
+.PMMenuItemsTitle {
   height: 3vw;
   border-radius: 10px 10px 0 0;
   border-bottom: 2px solid #000;
@@ -40,32 +44,36 @@
   display: flex;
   z-index: 1;
 }
-.MenuItemsTitle h2 {
+
+.PMMenuItemsTitle h2 {
   color: #000;
   font-size: 1.3vw;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 }
-.MenuItemsDataContent input {
+
+.PMMenuItemsDataContent input {
   font-size: 0.7vw;
   width: 100%;
   padding: 1vw;
 }
-.MenuItemsDataContent table {
+
+.PMMenuItemsDataContent table {
   width: 100%;
   white-space: nowrap;
   border-collapse: collapse;
 }
-.MenuItemsDataContent th,
-.MenuItemsDataContent td {
+
+.PMMenuItemsDataContent th,
+.PMMenuItemsDataContent td {
   padding: 1vw;
   text-align: left;
   border-bottom: 1px solid #ddd;
   min-width: 100px;
 }
 
-.MenuItemsDataContent button {
+.PMMenuItemsDataContent button {
   font-size: 0.7vw;
   cursor: pointer;
   width: 100%;
@@ -73,17 +81,17 @@
   transition: background-color 0.3s ease;
 }
 
-input[type="checkbox"] {
+.PMinput[type="checkbox"] {
   width: 20px;
   height: 20px;
   cursor: pointer;
 }
 
-.EnviarButton {
+.PMEnviarButton {
   margin-top: 20px;
 }
 
-button {
+.PMbutton {
   padding: 10px 20px;
   font-size: 16px;
   background-color: #4caf50;
@@ -93,11 +101,11 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.PMbutton:hover {
   background-color: #45a049;
 }
 
-.FetchErrorMessage {
+.PMFetchErrorMessage {
   margin-left: 2vw;
   margin-top: 1vw;
   width: 100%;
@@ -111,7 +119,7 @@ button:hover {
   text-align: center;
 }
 
-.TableContainer {
+.PMTableContainer {
   background-color: white;
 }
 
