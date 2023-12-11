@@ -28,7 +28,7 @@
   font-weight: 700;
   line-height: normal;
 }
-
+/*
 .navbar-center {
   display: flex;
   flex: 1;
@@ -37,7 +37,7 @@
   align-items: center;
   padding: 0 10px;
 }
-
+*/
 input {
   width: 50%;
   height: 100%;
@@ -126,6 +126,18 @@ input {
 .sidebar ul li a:hover {
   text-decoration: underline;
   color: #147aff;
+}
+
+.sidebar button {
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: white;
+}
+
+.sidebar button:hover {
+  text-decoration: underline;
+  color: #ff1414;
 }
 
 .menu-header {

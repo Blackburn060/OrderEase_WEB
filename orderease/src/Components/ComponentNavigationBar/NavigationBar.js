@@ -1,28 +1,31 @@
 import React, { useState, useEffect } from "react";
 import "./NavigationBar.css";
 import UserLogo from "../../assets/Images/IconeUserLoginPage.png";
-import IconSearch from "../../assets/Images/IconeLupaBarraNavegacao.png";
 import MenuIcon from "../../assets/Images/IconeHamburguerMenuLateral.png";
 import CloseIcon from "../../assets/Images/IconeVoltarMenuLateral2.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { getAuth, signOut } from "firebase/auth";
+import { useAuth } from "../../context/AuthContext";
 
 function NavigationBar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [menuIcon, setMenuIcon] = useState(MenuIcon);
-  const [overlayVisible, setOverlayVisible] = useState(false); // Novo estado para a tela de sobreposição
+  const [overlayVisible, setOverlayVisible] = useState(false);
   const [companyInfo, setCompanyInfo] = useState({
     name: "",
     logoUrl: "",
   });
 
+  const { user } = useAuth();
+
   useEffect(() => {
-    // Adicione um event listener para detectar cliques no documento inteiro
+
     document.addEventListener("click", handleDocumentClick);
 
     fetchCompanyInfo();
 
     return () => {
-      // Remova o event listener ao desmontar o componente
+
       document.removeEventListener("click", handleDocumentClick);
     };
   }, []);
@@ -30,23 +33,23 @@ function NavigationBar() {
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
     setMenuIcon(sidebarOpen ? MenuIcon : CloseIcon);
-    setOverlayVisible(!overlayVisible); // Mostrar ou esconder a tela de sobreposição
+    setOverlayVisible(!overlayVisible);
   };
 
   const handleDocumentClick = (e) => {
-    // Verifique se o clique ocorreu fora do menu lateral
+
     const sidebar = document.querySelector(".sidebar");
     if (sidebar && !sidebar.contains(e.target)) {
       setSidebarOpen(false);
       setMenuIcon(MenuIcon);
-      setOverlayVisible(false); // Esconder a tela de sobreposição
+      setOverlayVisible(false);
     }
   };
 
   const fetchCompanyInfo = async () => {
     try {
       const response = await fetch(
-        "https://orderease-api.onrender.com/api/obter-configuracoes"
+        "https://orderease-api.up.railway.app/api/obter-configuracoes"
       );
       if (response.ok) {
         const data = await response.json();
@@ -62,6 +65,20 @@ function NavigationBar() {
       }
     } catch (error) {
       console.error("Erro durante a solicitação para o servidor:", error);
+    }
+  };
+
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      const auth = getAuth();
+      await signOut(auth);
+
+      navigate("/PageLogin");
+      console.log("Logout bem-sucedido!");
+    } catch (error) {
+      console.error("Erro ao fazer logout:", error.message);
     }
   };
 
@@ -113,6 +130,9 @@ function NavigationBar() {
               Configurações
             </Link>
           </li>
+          <li>
+            <button onClick={handleLogout}>Sair</button>
+          </li>
         </ul>
       </div>
       <div className="navbar">
@@ -126,23 +146,13 @@ function NavigationBar() {
           </Link>
           <span>{companyInfo.name}</span>
         </div>
-        <div className="navbar-center">
-          <img
-            src={IconSearch}
-            alt="Ícone de Pesquisa"
-            className="search-icon"
-          />
-          <input type="text" placeholder="Pesquisar..." />
-        </div>
         <div className="navbar-right">
-          <span>Nome do Usuário</span>
-          <Link to="/PageLogin">
-            <img src={UserLogo} alt="Logo do Usuário" className="user-logo" />
-          </Link>
+          <span>{user ? user.email.split('@')[0] : "Nome do Usuário"}</span>
+          <img src={UserLogo} alt="Logo do Usuário" className="user-logo" />
         </div>
       </div>
       <div className="footer">
-        <span>Desenvolvido por TizDeveloper Inc.</span>
+        <span>Desenvolvido por OrderEase©</span>
       </div>
     </div>
   );

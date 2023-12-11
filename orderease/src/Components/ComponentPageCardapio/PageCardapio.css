@@ -1,0 +1,155 @@
+.PCBlueStripe {
+  height: 30px; 
+  background-color: #304DA9;
+  width: 100%;
+}
+
+.PCcontentPageMenu {
+  display: flex;
+}
+
+.PCCategoryButtons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.PCCategoryButtons button {
+  margin: 0 10px 10px 0;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.PCCategoryButtons button.active {
+  background-color: #304da9;
+  color: #fff;
+  border: 1px solid #304da9;
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .PCCategoryButtons button {
+    margin-right: 0;
+  }
+}
+
+
+.PCCategoryButtons {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.PCCategoryButtons button {
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.PCCategoryButtons button.active {
+  background-color: #304DA9;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.PCMenuTitle-container h1 {
+  align-items: flex-start;
+  padding-left: calc(5vh + 5vw);
+  text-align: left;
+  color: #000;
+  font-size: calc(2vh + 1vw);
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.PCMenuItems {
+  width: 100%;
+}
+
+.PCMenuItems ul {
+  font-size: calc(0.7vh + 0.7vw);
+  list-style-type: none;
+}
+
+.PCMenuItems ul li {
+  margin-bottom: 20px;
+  margin-right: 10px;
+}
+
+.PCMenuItems div {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #304DA9;
+}  
+
+.PCMenuItems h3 {
+  color: #ffffff;
+  font-size: calc(1.5vh + 1.5vw);
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+}
+
+.PCMenuItems p {
+  color: #ffffff;
+  margin-bottom: 10px;
+  font-size: calc(1vh + 1vw);
+}
+
+.PCMenuItems p1 {
+  color: yellow;
+  text-shadow: 10px solid black;
+  margin-bottom: 10px;
+  font-size: calc(1vh + 1vw);
+}
+
+.PCProductContainer {
+  display: flex;
+}
+
+.PCTextContainer {
+  width: 85%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #304DA9;
+}
+
+.PCImageContainer {
+  width: 30%;
+}
+
+.PCMenuItems img {
+  max-width: 65%;
+  height: auto;
+}
+
+.PCFetchErrorMessage {
+  margin-left: 1vh;
+  margin-top: 1vh;
+  width: 100%;
+  padding: 1.3vh;
+  border-radius: 10px;
+  z-index: 2;
+  opacity: 0;
+  animation: fadeInOut 3s ease forwards;
+  background-color: #f44336;
+  color: white;
+  text-align: center;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}

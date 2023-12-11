@@ -83,7 +83,7 @@ function PageProduct() {
   const fetchProducts = async () => {
     try {
       const response = await fetch(
-        "https://orderease-api.onrender.com/api/listar-produtos?status=Ativo"
+        "https://orderease-api.up.railway.app/api/listar-produtos?status=Ativo"
       );
       if (response.ok) {
         const productsData = await response.json();
@@ -133,7 +133,7 @@ function PageProduct() {
 
     try {
       const response = await fetch(
-        "https://orderease-api.onrender.com/api/adicionar-produto",
+        "https://orderease-api.up.railway.app/api/adicionar-produto",
         {
           method: "POST",
           headers: {
@@ -238,7 +238,7 @@ function PageProduct() {
 
     try {
       const response = await fetch(
-        `https://orderease-api.onrender.com/api/atualizar-produto/${selectedProduct.id}`,
+        `https://orderease-api.up.railway.app/api/atualizar-produto/${selectedProduct.id}`,
         {
           method: "PUT", // Corrigir o método HTTP para PUT
           headers: {
@@ -323,7 +323,7 @@ function PageProduct() {
 
     try {
       const response = await fetch(
-        `https://orderease-api.onrender.com/api/excluir-produto/${selectedProduct.id}`,
+        `https://orderease-api.up.railway.app/api/excluir-produto/${selectedProduct.id}`,
         {
           method: "DELETE",
         }

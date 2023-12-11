@@ -8,7 +8,7 @@ function PageRequests() {
   const fetchPedidos = async () => {
     try {
       const response = await fetch(
-        "https://orderease-api.onrender.com/api/obter-pedidos"
+        "https://orderease-api.up.railway.app/api/obter-pedidos"
       );
 
       if (response.ok) {
@@ -29,19 +29,8 @@ function PageRequests() {
     fetchPedidos();
   }, []);
 
-  const calcularTotalPedido = (itens) => {
-    return itens.reduce((acc, item) => acc + item.valor * item.quantidade, 0);
-  };
-
   const calcularQuantidadeTotal = (itens) => {
     return itens.reduce((acc, item) => acc + item.quantidade, 0);
-  };
-
-  const calcularQuantidadeTotalTodosPedidos = () => {
-    return pedidos.reduce(
-      (acc, pedido) => acc + calcularQuantidadeTotal(pedido.itens),
-      0
-    );
   };
 
   return (
@@ -67,9 +56,7 @@ function PageRequests() {
                       Quantidade Total do Pedido:{" "}
                       {calcularQuantidadeTotal(pedido.itens)}
                     </li>
-                    <li>
-                      Valor Total do Pedido: {calcularTotalPedido(pedido.itens)}
-                    </li>
+                    <li>Valor Total do Pedido: R${pedido.valorTotal}</li>
                   </ul>
                 </div>
               </div>

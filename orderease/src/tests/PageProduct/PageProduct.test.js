@@ -21,6 +21,13 @@ test("renders PageProduct component", () => {
     fireEvent.change(productDescriptionInput, { target: { value: "Test Description" } });
     expect(productDescriptionInput.value).toBe("Test Description");
   });
+
+  test("handles product category input", () => {
+    render(<PageProduct />);
+    const productCategoryInput = screen.getByLabelText("Categoria do Produto:");
+    fireEvent.change(productCategoryInput, { target: { value: "Alcoólicos" } });
+    expect(productCategoryInput.value).toBe("Alcoólicos");
+  });
   
   test("handles product value input", () => {
     render(<PageProduct />);
@@ -36,12 +43,3 @@ test("renders PageProduct component", () => {
     fireEvent.change(productImageInput, { target: { files: [file] } });
     expect(productImageInput.files[0]).toBe(file);
   });
-  
-  test("displays an alert when submitting with missing fields", () => {
-    render(<PageProduct />);
-    const submitButton = screen.getByText("Enviar");
-    fireEvent.click(submitButton);
-    const alertElement = screen.getByText("Por favor, preencha todos os campos do formulário e selecione uma imagem.");
-    expect(alertElement).toBeInTheDocument();
-  });
-

@@ -72,7 +72,7 @@ function PageWaiters() {
   const fetchWaiters = async () => {
     try {
       const response = await fetch(
-        "https://orderease-api.onrender.com/api/listar-garcons?status=Ativo"
+        "https://orderease-api.up.railway.app/api/listar-garcons?status=Ativo"
       );
       if (response.ok) {
         const waitersData = await response.json();
@@ -116,7 +116,7 @@ function PageWaiters() {
 
     try {
       const response = await fetch(
-        "https://orderease-api.onrender.com/api/adicionar-garcom",
+        "https://orderease-api.up.railway.app/api/adicionar-garcom",
         {
           method: "POST",
           headers: {
@@ -216,7 +216,7 @@ function PageWaiters() {
 
     try {
       const response = await fetch(
-        `https://orderease-api.onrender.com/api/atualizar-garcom/${selectedWaiter.id}`,
+        `https://orderease-api.up.railway.app/api/atualizar-garcom/${selectedWaiter.id}`,
         {
           method: "PUT",
           headers: {
@@ -301,7 +301,7 @@ function PageWaiters() {
 
     try {
       const response = await fetch(
-        `https://orderease-api.onrender.com/api/excluir-garcom/${selectedWaiter.id}`,
+        `https://orderease-api.up.railway.app/api/excluir-garcom/${selectedWaiter.id}`,
         {
           method: "DELETE",
         }

@@ -4,7 +4,7 @@ import "./PageLogin.css";
 import IconUser from "../../assets/Images/IconeUserLoginPage.png";
 import IconPassword from "../../assets/Images/IconeCadeadoLogin.png";
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDkm_pw2kGzze_T800gJYq2HMUYnY49Qx4",
@@ -23,6 +23,23 @@ function PageLogin() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [redirect, setRedirect] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const auth = getAuth(firebaseApp);
+
+    // Adiciona um observador de autenticação
+    const unsubscribe = onAuthStateChanged(auth, (authUser) => {
+      if (authUser) {
+        setUser(authUser);
+        setRedirect(true);
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => unsubscribe(); // Limpa o observador ao desmontar o componente
+  }, []);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -38,7 +55,7 @@ function PageLogin() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log("Login bem-sucedido!");
-      setRedirect(true);
+      // O estado do usuário será atualizado automaticamente pelo observador
     } catch (error) {
       console.error("Erro ao fazer login:", error.message);
       setError(error.message);
@@ -56,7 +73,7 @@ function PageLogin() {
   const fetchCompanyInfo = async () => {
     try {
       const response = await fetch(
-        "https://orderease-api.onrender.com/api/obter-configuracoes"
+        "https://orderease-api.up.railway.app/api/obter-configuracoes"
       );
       if (response.ok) {
         const data = await response.json();
@@ -74,7 +91,7 @@ function PageLogin() {
     }
   };
 
-  if (redirect) {
+  if (redirect || user) {
     // Redirecionar para a página inicial
     return <Navigate to="/home" />;
   }

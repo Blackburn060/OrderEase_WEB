@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./PageHome.css";
-import ImageUserLogo from "../../assets/Images/LogoExemplo.png";
+import { useAuth } from "../../context/AuthContext";
 
 function PageHome() {
   const [companyInfo, setCompanyInfo] = useState({
     homePageImageUrl: "",
   });
+
+  const { user } = useAuth();
 
   useEffect(() => {
     fetchCompanyInfo();
@@ -14,12 +16,13 @@ function PageHome() {
   const fetchCompanyInfo = async () => {
     try {
       const response = await fetch(
-        "https://orderease-api.onrender.com/api/obter-configuracoes"
+        "https://orderease-api.up.railway.app/api/obter-configuracoes"
       );
       if (response.ok) {
         const data = await response.json();
         setCompanyInfo({
           homePageImageUrl: data.homePageImage,
+          companyLogo: data.companyLogo,
         });
       } else {
         console.error(
@@ -36,8 +39,8 @@ function PageHome() {
     <div className="page">
       <div className="contentPageHome">
         <div className="PageHomeTitle-container">
-          <img src={ImageUserLogo} alt="User logo home page" />
-          <h1>Olá, Nome Usuário</h1>
+          <img src={companyInfo.companyLogo} alt="User logo home page" />
+          <h1>Olá, {user ? user.email.split('@')[0] : "Olá, Nome Usuário"}</h1>
         </div>
         <div className="PageHomeImageCenter">
           <img src={companyInfo.homePageImageUrl} alt="Center Page" />

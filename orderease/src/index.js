@@ -3,8 +3,9 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { AuthProvider } from './context/AuthContext';
 
-fetch("https://orderease-api.onrender.com/api/obter-configuracoes")
+fetch("https://orderease-api.up.railway.app/api/obter-configuracoes")
   .then((response) => response.json())
   .then((data) => {
     // Aqui você pode acessar o valor de primaryColor do objeto retornado pela API
@@ -25,7 +26,9 @@ fetch("https://orderease-api.onrender.com/api/obter-configuracoes")
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <AuthProvider>
+        <App />
+      </AuthProvider>
   </React.StrictMode>
 );
 

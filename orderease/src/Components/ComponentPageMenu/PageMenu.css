@@ -1,75 +1,126 @@
-.contentPageMenu {
-    display: flex;
+.PMcontentPageMenu {
+  display: flex;
+  justify-content: center;
+}
+
+.PMMenuItemsDataContent {
+  background: white;
+  table-layout: fixed;
+  overflow: auto;
+}
+
+.PMMenuTitle-container h1 {
+  padding-left: calc(5vh + 5vw);
+  text-align: left;
+  color: #000;
+  font-size: calc(2vh + 1vw);
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.PMMenuItems {
+  position: relative;
+  width: 75%;
+  max-width: 90%;
+  height: 70%;
+  margin-top: 2%;
+  margin-left: 2%;
+  margin-right: 2%;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+}
+
+.PMMenuItemsTitle {
+  height: 3vw;
+  border-radius: 10px 10px 0 0;
+  border-bottom: 2px solid #000;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  z-index: 1;
+}
+
+.PMMenuItemsTitle h2 {
+  color: #000;
+  font-size: 1.3vw;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.PMMenuItemsDataContent input {
+  font-size: 0.7vw;
+  width: 100%;
+  padding: 1vw;
+}
+
+.PMMenuItemsDataContent table {
+  width: 100%;
+  white-space: nowrap;
+  border-collapse: collapse;
+}
+
+.PMMenuItemsDataContent th,
+.PMMenuItemsDataContent td {
+  padding: 1vw;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  min-width: 100px;
+}
+
+.PMMenuItemsDataContent button {
+  font-size: 0.7vw;
+  cursor: pointer;
+  width: 100%;
+  padding: 1vw;
+  transition: background-color 0.3s ease;
+}
+
+.PMFetchErrorMessage {
+  margin-left: 2vw;
+  margin-top: 1vw;
+  width: 100%;
+  padding: 1.3vh;
+  border-radius: 10px;
+  z-index: 2;
+  opacity: 0;
+  animation: fadeInOut 3s ease forwards;
+  background-color: #f44336;
+  color: white;
+  text-align: center;
+}
+
+.PMTableContainer {
+  background-color: white;
+}
+
+.PMMenuItemsDataContent select {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0.5vw;
+  width: 100%;
+  color: black;
+  font-size: 1vw;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.PMMenuItemsDataContent select option {
+  color: black;
+  font-weight: normal;
+}
+
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 1;
   }
-  
-  .MenuTitle-container h1 {
-    align-items: flex-start;
-    padding-left: calc(5vh + 5vw);
-    text-align: left;
-    color: #000;
-    font-size: calc(2vh + 1vw);
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
-  
-  .MenuItems {
-    width: 100%;
-    margin-top: calc(1vh + 1vw);
-  }
-  
-  .MenuItems ul {
-    font-size: calc(0.7vh + 0.7vw);
-    list-style-type: none;
-  }
-  
-  .MenuItems ul li {
-    margin-bottom: 20px;
-  }
-  
-  .MenuItems div {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-  }
-  
-  .MenuItems h3 {
-    color: #000;
-    font-size: calc(1.5vh + 1.5vw);
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
-  
-  .MenuItems p {
-    color: #555;
-    font-size: calc(1vh + 1vw);
-  }
-  
-  .FetchErrorMessage {
-    margin-left: 2vh;
-    margin-top: 1vh;
-    width: 100%;
-    padding: 1.3vh;
-    border-radius: 10px;
-    z-index: 2;
+  50% {
     opacity: 0;
-    animation: fadeInOut 3s ease forwards;
-    background-color: #f44336;
-    color: white;
-    text-align: center;
   }
-  
-  @keyframes fadeInOut {
-    0% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-  
+}
