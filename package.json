@@ -1,7 +1,7 @@
 {
 "scripts": {
 "start": "node orderease/scripts/start.js",
-"build": "node scripts/build.js",
-"test": "node scripts/test.js"
+"build": "node orderease/scripts/build.js",
+"test": "node orderease/scripts/test.js"
   }
 }
