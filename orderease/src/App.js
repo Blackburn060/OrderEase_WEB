@@ -16,7 +16,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/" element={<Navigate to="/PageLogin" />} />
         <Route element={<LayoutWithNavbar />}>
           <Route path="/home" element={<PageHome />} />
           <Route path="/pageProduct" element={<PageProduct />} />
