@@ -24,7 +24,24 @@
   width: calc(5vh + 5vw);
 }
 
+.DetailedTableDataContent .deleteButton {
+  background-color: red;
+  font-size: calc(0.7vh + 0.7vw);
+  width: calc(4vh + 4vw);
+}
+
+.DetailedTableDataContent .updateButton {
+  font-size: calc(0.7vh + 0.7vw);
+  width: calc(4vh + 4vw);
+}
+
+.DetailedTableDataContent .sendButton {
+  font-size: calc(0.7vh + 0.7vw);
+  width: calc(4vh + 4vw);
+}
+
 .DetailedTableData {
+  overflow-y: auto;
   position: absolute;
   width: calc(20vh + 20vw);
   height: calc(25vh + 25vw);
@@ -69,18 +86,26 @@
   background-color: #f9f9f9;
 }
 
-.DetailedTableDataContent label {
-  display: block;
-  margin-bottom: 5px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+.DetailedTableDataContent table {
+  margin: 0 auto;
+}
+
+.DetailedTableDataContent table td,
+table th {
+  padding-right: calc(2.8vh + 2.8vw);
+  font-size: calc(0.7vh + 0.7vw);
+  text-align: center;
+  vertical-align: middle;
+}
+
+.DetailedTableDataContent table td:last-child,
+table th:last-child {
+  padding-right: none;
 }
 
 .DetailedTableDataContent input {
   width: 95%;
   padding: 10px;
-  margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
   resize: vertical;
@@ -95,4 +120,16 @@
 
 .DetailedTableDataContent button {
   font-size: 26px;
+}
+
+.DetailedTableDataContent table .selectedRow {
+  background-color: #e0e0e0;
+}
+
+.DetailedTableDataContent select {
+  width: calc(4.5vh + 4.5vw);
+  padding: calc(0.3vh + 0.3vw);
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: calc(0.5vh + 0.5vw);
 }
