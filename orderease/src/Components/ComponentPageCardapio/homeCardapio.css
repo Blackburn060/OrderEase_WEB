@@ -1,5 +1,9 @@
 /* homeCardapio.css */
-
+.bodyHomeCardapio {
+  overflow-x: hidden; /* Oculta a barra de rolagem horizontal */
+  overflow-y: hidden; /* Oculta a barra de rolagem vertical */
+  margin: 0; /* Remove a margem padrão do corpo */
+}
 .home-cardapio-container {
   display: flex;
   flex-direction: column;  
@@ -7,7 +11,7 @@
   align-items: center;
   justify-content: center;
   height: 90vh; 
-  gap: 90px;  
+  gap: 50px;  
 
 }
 
@@ -20,9 +24,10 @@
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;  
-
    width: 50vw;  
-  max-width: 300px;  
+  max-width: 300px; 
+
+  
 }
 
 .acessar-cardapio-button:hover {
@@ -68,7 +73,8 @@
   justify-content: space-between;
   background-color: #103085;
   padding: 10px;
-  
+    overflow-y: hidden; /* Oculta a barra de rolagem vertical */
+
 }
 
 .logo-containerCardapio img {
@@ -76,21 +82,27 @@
   height: 50px; /* Ajuste conforme necessário */
   border-radius: 50%; /* Deixa a imagem circular */
   margin-right: 10px; /* Espaçamento à direita da logo */
+  
 }
-
+.social-buttons-container .social-button:not(:last-child) {
+  margin-right: 10px; /* Espaçamento entre os botões, exceto para o último botão */
+}
 .company-name {
   color: #fff;
   font-size: 18px;
 }
 .social-buttons-container {
   display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  justify-content: flex-start; /* Mover para a esquerda */
+
+}
+.social-buttons-container .social-button img {
+  width: 30px; /* Largura relativa à largura da viewport */
+  height: auto; /* Altura automática para manter as proporções */
 }
 
-.social-button {
-  background-color: #103085;
-  color: #fff;
+.social-buttons-container .social-button {
+  color: #ffffff;
   padding: 10px 20px;
   border: none;
   border-radius: 10px;
@@ -98,8 +110,14 @@
   cursor: pointer;
   margin: 0 10px;
   transition: background-color 0.3s ease;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
 }
 
-.social-button:hover {
+.social-buttons-container .social-button:hover {
   background-color: #0056b3;
+  outline: none; /* Remove a borda de foco */
+
 }

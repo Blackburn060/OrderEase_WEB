@@ -1,6 +1,5 @@
-// homeCardapio.js
-
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./homeCardapio.css";
 import logoInstagram from "../../assets/Images/LogoInstagram.png";
 import LogoWhatsApp from "../../assets/Images/LogoWhatsApp.png";
@@ -14,6 +13,8 @@ function HomeCardapio() {
   const [linkFacebook, setLinkFacebook] = useState("");
   const [linkWhatsApp, setLinkWhatsApp] = useState("");
   const [companyLogo, setCompanyLogo] = useState("");
+
+  const navigate = useNavigate();
 
   const fetchSettings = async () => {
     try {
@@ -39,7 +40,17 @@ function HomeCardapio() {
 
   useEffect(() => {
     fetchSettings();
+    document.body.classList.add("bodyHomeCardapio");
+    fetchSettings();
+    return () => {
+      // Remove a classe do body quando o componente desmonta
+      document.body.classList.remove("bodyHomeCardapio");
+    };
   }, []); // Executará a chamada à API apenas uma vez ao montar o componente
+
+  const handleNavigateToPageCardapio = () => {
+    navigate("/PageCardapio");
+  };
 
   return (
     <div className="home-container">
@@ -51,34 +62,39 @@ function HomeCardapio() {
       </div>
 
       <div className="social-buttons-container">
-  {linkWhatsApp && (
-    <button
-      className="social-button"
-      onClick={() => window.open(linkWhatsApp)}
-    >
-      <img src={LogoWhatsApp} alt="WhatsApp" />
-    </button>
-  )}
-  {linkFacebook && (
-    <button
-      className="social-button"
-      onClick={() => window.open(linkFacebook)}
-    >
-      <img src={logofacebook} alt="Facebook" />
-    </button>
-  )}
-  {linkInstagram && (
-    <button
-      className="social-button"
-      onClick={() => window.open(linkInstagram)}
-    >
-      <img src={logoInstagram} alt="Instagram" />
-    </button>
-  )}
-</div>
+        {linkWhatsApp && (
+          <button
+            className="social-button"
+            onClick={() => window.open(linkWhatsApp)}
+          >
+            <img src={LogoWhatsApp} alt="WhatsApp" />
+          </button>
+        )}
+        {linkFacebook && (
+          <button
+            className="social-button"
+            onClick={() => window.open(linkFacebook)}
+          >
+            <img src={logofacebook} alt="Facebook" />
+          </button>
+        )}
+        {linkInstagram && (
+          <button
+            className="social-button"
+            onClick={() => window.open(linkInstagram)}
+          >
+            <img src={logoInstagram} alt="Instagram" />
+          </button>
+        )}
+      </div>
 
       <div className="home-cardapio-container">
-        <button className="acessar-cardapio-button">Acessar Cardápio</button>
+        <button
+          className="acessar-cardapio-button"
+          onClick={handleNavigateToPageCardapio}
+        >
+          Acessar Cardápio
+        </button>
         <button className="acessar-cardapio-button">
           Horário de Funcionamento
         </button>
