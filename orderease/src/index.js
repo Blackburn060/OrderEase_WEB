@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { AuthProvider } from './context/AuthContext';
 
 fetch("https://orderease-api.up.railway.app/api/obter-configuracoes")
   .then((response) => response.json())
@@ -25,7 +26,9 @@ fetch("https://orderease-api.up.railway.app/api/obter-configuracoes")
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <AuthProvider>
+        <App />
+      </AuthProvider>
   </React.StrictMode>
 );
 
