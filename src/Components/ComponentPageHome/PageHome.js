@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./PageHome.css";
+import { useAuth } from "../../context/AuthContext";
 
 function PageHome() {
   const [companyInfo, setCompanyInfo] = useState({
     homePageImageUrl: "",
   });
+
+  const { user } = useAuth();
 
   useEffect(() => {
     fetchCompanyInfo();
@@ -37,7 +40,7 @@ function PageHome() {
       <div className="contentPageHome">
         <div className="PageHomeTitle-container">
           <img src={companyInfo.companyLogo} alt="User logo home page" />
-          <h1>Olá, Nome Usuário</h1>
+          <h1>Olá, {user ? user.email.split('@')[0] : "Olá, Nome Usuário"}</h1>
         </div>
         <div className="PageHomeImageCenter">
           <img src={companyInfo.homePageImageUrl} alt="Center Page" />

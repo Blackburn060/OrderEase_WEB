@@ -5,6 +5,7 @@ import MenuIcon from "../../assets/Images/IconeHamburguerMenuLateral.png";
 import CloseIcon from "../../assets/Images/IconeVoltarMenuLateral2.png";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
+import { useAuth } from "../../context/AuthContext";
 
 function NavigationBar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -15,14 +16,16 @@ function NavigationBar() {
     logoUrl: "",
   });
 
+  const { user } = useAuth();
+
   useEffect(() => {
-    // Adicione um event listener para detectar cliques no documento inteiro
+
     document.addEventListener("click", handleDocumentClick);
 
     fetchCompanyInfo();
 
     return () => {
-      // Remova o event listener ao desmontar o componente
+
       document.removeEventListener("click", handleDocumentClick);
     };
   }, []);
@@ -30,16 +33,16 @@ function NavigationBar() {
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
     setMenuIcon(sidebarOpen ? MenuIcon : CloseIcon);
-    setOverlayVisible(!overlayVisible); // Mostrar ou esconder a tela de sobreposição
+    setOverlayVisible(!overlayVisible);
   };
 
   const handleDocumentClick = (e) => {
-    // Verifique se o clique ocorreu fora do menu lateral
+
     const sidebar = document.querySelector(".sidebar");
     if (sidebar && !sidebar.contains(e.target)) {
       setSidebarOpen(false);
       setMenuIcon(MenuIcon);
-      setOverlayVisible(false); // Esconder a tela de sobreposição
+      setOverlayVisible(false);
     }
   };
 
@@ -71,7 +74,7 @@ function NavigationBar() {
     try {
       const auth = getAuth();
       await signOut(auth);
-      // Redirecionar para a página de login usando a função navigate
+
       navigate("/PageLogin");
       console.log("Logout bem-sucedido!");
     } catch (error) {
@@ -144,7 +147,7 @@ function NavigationBar() {
           <span>{companyInfo.name}</span>
         </div>
         <div className="navbar-right">
-          <span>Nome do Usuário</span>
+          <span>{user ? user.email.split('@')[0] : "Nome do Usuário"}</span>
           <img src={UserLogo} alt="Logo do Usuário" className="user-logo" />
         </div>
       </div>
