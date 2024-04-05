@@ -9,7 +9,7 @@ function PageCardapio() {
  
   const fetchCategories = useCallback(async () => {
     try {
-      const response = await fetch("https://orderease-api.up.railway.app/api/listar-produtos?status=Ativo");
+      const response = await fetch("https://orderease-api.azurewebsites.net/api/listar-produtos?status=Ativo");
 
       if (response.ok) {
         const productsData = await response.json();
@@ -27,7 +27,7 @@ function PageCardapio() {
 
   const fetchProducts = useCallback(async () => {
     try {
-      let apiUrl = "https://orderease-api.up.railway.app/api/listar-produtos?status=Ativo";
+      let apiUrl = "https://orderease-api.azurewebsites.net/api/listar-produtos?status=Ativo";
   
       if (PCselectedCategory) {
         apiUrl += `&categoria=${PCselectedCategory}`;

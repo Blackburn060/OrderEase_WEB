@@ -14,7 +14,7 @@ function PageMenu() {
   const fetchMenuItems = async () => {
     try {
       const response = await fetch(
-        "https://orderease-api.up.railway.app/api/listar-produtos"
+        "https://orderease-api.azurewebsites.net/api/listar-produtos"
       );
       if (response.ok) {
         const menuData = await response.json();

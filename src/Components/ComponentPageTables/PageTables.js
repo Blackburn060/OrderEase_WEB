@@ -12,7 +12,7 @@ const PageTables = () => {
   const fetchTables = async () => {
     try {
       const response = await fetch(
-        "https://orderease-api.up.railway.app/api/obter-mesas"
+        "https://orderease-api.azurewebsites.net/api/obter-mesas"
       );
       if (!response.ok) {
         throw new Error(`Erro na requisição: ${response.statusText}`);
@@ -75,7 +75,7 @@ const PageTables = () => {
       };
 
       const response = await fetch(
-        "https://orderease-api.up.railway.app/api/adicionar-mesa",
+        "https://orderease-api.azurewebsites.net/api/adicionar-mesa",
         {
           method: "POST",
           headers: {
@@ -118,7 +118,7 @@ const PageTables = () => {
       };
 
       const response = await fetch(
-        `https://orderease-api.up.railway.app/api/atualizar-mesa/${selectedTable.id}`,
+        `https://orderease-api.azurewebsites.net/api/atualizar-mesa/${selectedTable.id}`,
         {
           method: "PUT",
           headers: {
@@ -156,7 +156,7 @@ const PageTables = () => {
 
     try {
       const response = await fetch(
-        `https://orderease-api.up.railway.app/api/deletar-mesa/${selectedTable.id}`,
+        `https://orderease-api.azurewebsites.net/api/deletar-mesa/${selectedTable.id}`,
         {
           method: "DELETE",
         }

@@ -82,7 +82,7 @@ function PageSettings() {
 
     try {
       const response = await fetch(
-        "https://orderease-api.up.railway.app/api/salvar-configuracoes",
+        "https://orderease-api.azurewebsites.net/api/salvar-configuracoes",
         {
           method: "POST",
           headers: {
@@ -162,7 +162,7 @@ function PageSettings() {
   const fetchSettings = async () => {
     try {
       const response = await fetch(
-        "https://orderease-api.up.railway.app/api/obter-configuracoes"
+        "https://orderease-api.azurewebsites.net/api/obter-configuracoes"
       );
       if (response.ok) {
         const data = await response.json();

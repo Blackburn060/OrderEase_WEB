@@ -5,7 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { AuthProvider } from './context/AuthContext';
 
-fetch("https://orderease-api.up.railway.app/api/obter-configuracoes")
+fetch("https://orderease-api.azurewebsites.net/api/obter-configuracoes")
   .then((response) => response.json())
   .then((data) => {
     // Aqui você pode acessar o valor de primaryColor do objeto retornado pela API
